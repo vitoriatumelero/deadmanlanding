@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <title>Deadman</title>
-<meta name="description" content="Deadman: a dead man's switch for your Solana wallet. Check in, or check out.">
+<meta name="description" content="Deadman: a dead man's switch for your Solana wallet. Don't take your crypto to the grave.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Schibsted+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap">
 <style>
-/* Layout: dark product page, one-column narrative (hero → steps → live pulse demo → moods → FAQ → poster CTA), pixel grid as the recurring motif */
+/* Layout: dark product page following the pitch deck: bold grotesk headlines with a pulse-green second half, mono eyebrows and numbers, pixel art for state */
 :root{
   --void:#0A0B0D;   /* ground */
   --grave:#16181C;  /* cards */
@@ -18,6 +18,7 @@
   --line:#262A31;
   --bone:#F1F0EA;   /* text */
   --pulse:#3EF5A8;  /* alive, primary */
+  --pulse-deep:#0F2A20;
   --missed:#FFB547; /* warning */
   --flat:#FF4D5E;   /* release due */
   --ash:#8B8F98;    /* secondary text */
@@ -37,20 +38,20 @@ img{max-width:100%;display:block}
 svg.px{shape-rendering:crispEdges;display:block}
 :focus-visible{outline:2px solid var(--pulse);outline-offset:3px;border-radius:6px}
 .wrap{max-width:var(--max);margin-inline:auto;padding-inline:clamp(16px,4vw,32px)}
-.pixel{font-family:var(--f-pixel);text-transform:uppercase;letter-spacing:.06em}
 .mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
-.eyebrow{font-family:var(--f-pixel);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--pulse);margin:0}
+.g{color:var(--pulse)}
+.eyebrow{font:500 13px/1.3 var(--f-mono);letter-spacing:.02em;color:var(--pulse);margin:0}
 h1,h2,h3{text-wrap:balance;margin:0}
-h2{font-size:clamp(30px,4.2vw,48px);line-height:1.08;font-weight:700;letter-spacing:-.02em}
+h2{font-size:clamp(32px,4.4vw,52px);line-height:1.05;font-weight:700;letter-spacing:-.025em}
 .lede{color:var(--ash);font-size:clamp(17px,1.6vw,19px);max-width:56ch;margin:0}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:6px 9px;border-radius:7px;font:400 11px/1 var(--f-pixel);letter-spacing:.14em;text-transform:uppercase;color:var(--c,var(--pulse));background:color-mix(in srgb,var(--c,var(--pulse)) 14%,var(--void))}
+.pill svg{width:13px;height:13px}
 
 /* ---------- buttons ---------- */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:52px;padding:0 24px;border-radius:14px;border:0;font:600 16px/1 var(--f-sans);cursor:pointer;text-decoration:none;transition:transform .15s ease, background .2s ease, box-shadow .2s ease;white-space:nowrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:52px;padding:0 24px;border-radius:14px;border:0;font:600 16px/1 var(--f-sans);cursor:pointer;text-decoration:none;transition:transform .15s ease, box-shadow .2s ease;white-space:nowrap}
 .btn:active{transform:scale(.97)}
 .btn-pulse{background:var(--pulse);color:var(--void)}
 .btn-pulse:hover{box-shadow:0 0 0 6px color-mix(in srgb,var(--pulse) 22%,transparent)}
-.btn-ghost{background:var(--grave);color:var(--bone);border:1px solid var(--line)}
-.btn-ghost:hover{background:var(--grave-2)}
 .btn svg{width:20px;height:20px}
 
 /* ---------- nav ---------- */
@@ -67,14 +68,14 @@ h2{font-size:clamp(30px,4.2vw,48px);line-height:1.08;font-weight:700;letter-spac
 .lang button{background:none;border:0;color:var(--ash);font:500 12px/1 var(--f-mono);padding:9px 10px;cursor:pointer}
 .lang button[aria-pressed="true"]{background:var(--grave-2);color:var(--bone)}
 .nav .btn{height:42px;padding:0 18px;font-size:15px;border-radius:11px}
-@media (max-width:860px){.nav-links{display:none}.nav-right{margin-left:auto}}
+@media (max-width:920px){.nav-links{display:none}.nav-right{margin-left:auto}}
 @media (max-width:420px){.nav .btn{display:none}}
 
 /* ---------- hero ---------- */
-.hero{position:relative;padding-top:clamp(120px,16vh,170px);padding-bottom:40px;overflow:hidden}
-.hero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(32px,5vw,72px);align-items:center}
-.hero h1{font-family:var(--f-pixel);font-weight:400;font-size:clamp(40px,6.4vw,84px);line-height:1.02;letter-spacing:.01em;text-transform:uppercase;margin:18px 0 22px}
-.hero h1 .hl{color:var(--pulse)}
+.hero{position:relative;padding-top:clamp(120px,15vh,160px);padding-bottom:56px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:clamp(32px,5vw,72px);align-items:center}
+.hero-mark{width:min(360px,70%);height:auto;margin-bottom:28px}
+.hero h1{font-weight:800;font-size:clamp(44px,6.6vw,86px);line-height:.98;letter-spacing:-.035em;margin:16px 0 24px}
 .hero .lede{margin-bottom:30px}
 .signup{display:flex;gap:10px;flex-wrap:wrap;max-width:520px}
 .signup input{flex:1 1 220px;min-width:0;height:52px;padding:0 18px;border-radius:14px;border:1px solid var(--line);background:var(--grave);color:var(--bone);font:400 16px var(--f-sans)}
@@ -82,104 +83,178 @@ h2{font-size:clamp(30px,4.2vw,48px);line-height:1.08;font-weight:700;letter-spac
 .signup input:focus{outline:none;border-color:var(--pulse)}
 .form-note{font:400 13px var(--f-mono);color:var(--ash);margin:12px 0 0;min-height:1.3em}
 .form-note.ok{color:var(--pulse)}
-.hero-meta{display:flex;gap:22px;flex-wrap:wrap;margin-top:34px;color:var(--ash);font-size:14px}
+.hero-meta{display:flex;gap:10px 26px;flex-wrap:wrap;margin-top:30px;font:400 13px var(--f-mono);color:var(--ash)}
 .hero-meta span{display:inline-flex;align-items:center;gap:8px}
-.hero-meta svg{width:14px;height:14px}
+.hero-meta i{width:8px;height:8px;background:var(--pulse);display:inline-block}
 
-.phone-stage{position:relative;display:grid;place-items:center;min-height:560px}
-.phone{position:relative;width:min(300px,78vw);aspect-ratio:1170/2532;max-width:100%;border-radius:44px;padding:10px;background:linear-gradient(160deg,#2a2e35,#121418 40%,#1d2026);box-shadow:0 40px 90px -20px rgba(0,0,0,.8),0 0 0 1px #2d3138 inset;z-index:2;animation:float 7s ease-in-out infinite}
-.phone .screen{position:relative;width:100%;height:100%;border-radius:35px;overflow:hidden;background:var(--void)}
-.phone .screen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .7s ease}
-.phone .screen img.on{opacity:1}
-.phone .notch{position:absolute;top:18px;left:50%;transform:translateX(-50%);width:78px;height:22px;border-radius:12px;background:#000;z-index:3}
+.phone-stage{position:relative;display:grid;place-items:center;min-height:580px}
+.shot{position:relative;width:min(290px,76vw);aspect-ratio:380/822;z-index:2;filter:drop-shadow(0 40px 60px rgba(0,0,0,.7))}
+.shot img{position:absolute;inset:0;width:100%;height:100%;border-radius:12% / 5.6%;opacity:0;transition:opacity .7s ease}
+.shot img.on{opacity:1}
+.floaty{animation:float 7s ease-in-out infinite}
 @keyframes float{50%{transform:translateY(-12px)}}
-.glow{position:absolute;width:420px;height:420px;border-radius:50%;filter:blur(70px);opacity:.28;background:var(--pulse);transition:background .8s ease;z-index:0}
-.sticker{position:absolute;z-index:3;display:flex;align-items:center;gap:8px;padding:9px 13px;border-radius:10px;font:400 12px/1 var(--f-pixel);letter-spacing:.12em;text-transform:uppercase;color:var(--void);box-shadow:0 10px 24px -8px rgba(0,0,0,.6);border:2px solid var(--void)}
-.sticker svg{width:18px;height:18px}
-.st-1{top:8%;left:-2%;background:var(--bone);transform:rotate(-6deg)}
-.st-2{bottom:16%;right:-4%;background:var(--pulse);transform:rotate(5deg)}
-.st-3{bottom:4%;left:4%;background:var(--grave);color:var(--bone);border-color:var(--line);transform:rotate(-3deg)}
-.state-chip{transition:background .5s ease}
+.glow{position:absolute;width:440px;height:440px;max-width:100%;border-radius:50%;filter:blur(80px);opacity:.25;background:var(--pulse);transition:background .8s ease;z-index:0}
+.hero-chip{position:absolute;z-index:3;bottom:13%;right:2%;transform:rotate(4deg);box-shadow:0 10px 24px -8px rgba(0,0,0,.6);padding:10px 13px;font-size:12px;border:1px solid color-mix(in srgb,var(--c) 40%,transparent)}
+.hero-chip svg{width:16px;height:16px}
 
-.ecg{position:absolute;left:0;right:0;bottom:0;height:120px;pointer-events:none;opacity:.5;z-index:0}
-.ecg path{fill:none;stroke:var(--pulse);stroke-width:2;stroke-linejoin:miter;vector-effect:non-scaling-stroke}
+.ecg{position:absolute;left:0;right:0;bottom:0;height:120px;pointer-events:none;opacity:.45;z-index:0}
+.ecg path{fill:none;stroke:var(--pulse);stroke-width:2;vector-effect:non-scaling-stroke}
 .ecg .trace{stroke-dasharray:240 2400;animation:trace 4.2s linear infinite;filter:drop-shadow(0 0 6px var(--pulse))}
-.ecg .base{opacity:.18}
+.ecg .base{opacity:.16}
 @keyframes trace{from{stroke-dashoffset:2640}to{stroke-dashoffset:0}}
-
-@media (max-width:900px){
-  .hero-grid{grid-template-columns:1fr}
-  .phone-stage{min-height:520px}
-  .st-1{left:2%}.st-2{right:2%}
-}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr}.phone-stage{min-height:540px}}
 
 /* ---------- ticker ---------- */
-.ticker{border-block:1px solid var(--line);overflow:hidden;padding:18px 0;background:var(--void);position:relative}
-.ticker-track{display:flex;gap:18px;width:max-content;animation:marquee 38s linear infinite}
+.ticker{border-block:1px solid var(--line);overflow:hidden;padding:20px 0}
+.ticker-track{display:flex;gap:48px;width:max-content;animation:marquee 40s linear infinite}
 .ticker:hover .ticker-track{animation-play-state:paused}
 @keyframes marquee{to{transform:translateX(-50%)}}
-.tag{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:10px;font:400 13px/1 var(--f-pixel);letter-spacing:.14em;text-transform:uppercase;white-space:nowrap}
-.tag svg{width:20px;height:20px}
-.tag.t-pulse{background:var(--pulse);color:var(--void)}
-.tag.t-bone{background:var(--bone);color:var(--void)}
-.tag.t-missed{background:var(--missed);color:var(--void)}
-.tag.t-flat{background:var(--flat);color:var(--void)}
-.tag.t-ash{background:var(--ash);color:var(--void)}
-.tag.t-grave{background:var(--grave);color:var(--bone);border:1px solid var(--line)}
+.tk{display:inline-flex;align-items:center;gap:12px;white-space:nowrap;font:400 14px var(--f-mono);color:var(--ash)}
+.tk b{font-weight:500;color:var(--pulse)}
+.tk svg{width:18px;height:18px}
 
 /* ---------- sections ---------- */
-section.block{padding-block:clamp(80px,11vw,140px)}
-.sec-head{display:grid;gap:18px;margin-bottom:clamp(40px,6vw,64px);max-width:720px}
+section.block{padding-block:clamp(80px,10vw,130px)}
+.sec-head{display:grid;gap:16px;margin-bottom:clamp(40px,6vw,60px);max-width:760px}
+.card{background:var(--grave);border:1px solid var(--line);border-radius:var(--r)}
 
-/* steps */
-.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-.step{background:var(--grave);border:1px solid var(--line);border-radius:var(--r);padding:26px;display:flex;flex-direction:column;gap:16px;min-width:0}
-.step-n{display:flex;align-items:center;justify-content:space-between}
-.step-n .num{font:400 13px var(--f-pixel);letter-spacing:.14em;color:var(--ash)}
-.step-n svg{width:34px;height:34px}
-.step h3{font-size:22px;font-weight:700;letter-spacing:-.01em}
-.step p{margin:0;color:var(--ash);font-size:15.5px}
-.mini{margin-top:auto;background:var(--void);border:1px solid var(--line);border-radius:12px;padding:14px;font:400 13px/1.7 var(--f-mono);color:var(--bone);display:grid;gap:4px;min-width:0}
-.mini .row{display:flex;justify-content:space-between;gap:10px;min-width:0}
-.mini .row span:first-child{color:var(--ash)}
-.mini .row span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.mini .g{color:var(--pulse)}.mini .o{color:var(--missed)}.mini .r{color:var(--flat)}
-.mini .bar{height:6px;border-radius:3px;background:var(--grave-2);overflow:hidden;margin:6px 0 2px}
-.mini .bar i{display:block;height:100%;background:var(--pulse)}
-@media (max-width:900px){.steps{grid-template-columns:1fr}}
+/* problem */
+.threats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.threat{padding:24px;display:grid;gap:14px;align-content:start}
+.threat .top{display:flex;justify-content:space-between;align-items:center}
+.threat .top svg{width:36px;height:36px}
+.threat h3{font-size:22px;line-height:1.2;font-weight:700;letter-spacing:-.01em}
+.threat p{margin:0;color:var(--ash);font-size:14px}
+.threat p b{font:500 13px var(--f-mono);color:var(--bone)}
+.punch{margin:36px 0 0;font-size:clamp(20px,2.2vw,26px);font-weight:600;letter-spacing:-.01em}
+.src{margin-top:14px;font:400 12px var(--f-mono);color:var(--ash)}
+@media (max-width:860px){.threats{grid-template-columns:1fr}}
+
+/* how it works: sticky phone */
+.how{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.75fr);gap:clamp(32px,6vw,90px)}
+.how-steps{display:grid}
+.hstep{min-height:72vh;display:grid;align-content:center;gap:16px;padding-block:40px;border-top:1px solid var(--line);opacity:.35;transition:opacity .4s ease}
+.hstep:first-child{border-top:0}
+.hstep.active{opacity:1}
+.hstep .meta{font:500 13px var(--f-mono);color:var(--ash)}
+.hstep .bignum{display:flex;align-items:center;gap:18px}
+.hstep .bignum span{font:500 clamp(64px,8vw,104px)/.9 var(--f-mono);color:var(--c);letter-spacing:-.04em}
+.hstep .bignum svg{width:44px;height:auto}
+.hstep h3{font-size:clamp(26px,3vw,34px);font-weight:700;letter-spacing:-.02em}
+.hstep .say{font-size:19px;font-weight:600;margin:0;max-width:30ch}
+.kv{display:grid;margin-top:8px;border-top:1px solid var(--line)}
+.kv div{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:16px;padding:13px 0;border-bottom:1px solid var(--line);font-size:15px}
+.kv dt{font-weight:600;color:var(--c)}
+.kv dd{margin:0;color:var(--bone)}
+.hstep .inline-shot{display:none;width:min(240px,70%);margin-top:16px;border-radius:12% / 5.6%}
+.how-phone{position:sticky;top:calc(50vh - 300px);height:600px;display:grid;place-items:center}
+.how-phone .shot{width:min(278px,100%)}
+@media (max-width:900px){
+  .how{grid-template-columns:1fr}
+  .how-phone{display:none}
+  .hstep{min-height:0;opacity:1}
+  .hstep .inline-shot{display:block}
+}
 
 /* pulse demo */
 .demo{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,4vw,56px);align-items:center}
-.ring-card{background:var(--grave);border:1px solid var(--line);border-radius:28px;padding:clamp(22px,3vw,34px);display:grid;gap:22px;justify-items:center;position:relative;overflow:hidden}
+.ring-card{border-radius:28px;padding:clamp(22px,3vw,34px);display:grid;gap:20px;justify-items:center;position:relative;overflow:hidden}
 .ring-card .demo-label{position:absolute;top:16px;right:18px;font:400 11px var(--f-mono);color:var(--ash)}
 .ring{position:relative;width:min(320px,100%);aspect-ratio:1}
-.ring svg{width:100%;height:100%}
+.ring > svg{width:100%;height:100%}
 .ring-center{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:8px;text-align:center}
-.chip{display:inline-flex;align-items:center;gap:7px;padding:6px 10px;border-radius:8px;font:400 11px/1 var(--f-pixel);letter-spacing:.14em;text-transform:uppercase;background:color-mix(in srgb,var(--c,var(--pulse)) 16%,transparent);color:var(--c,var(--pulse))}
-.chip svg{width:14px;height:14px}
 .timer{font:500 clamp(40px,6vw,56px)/1 var(--f-mono);color:var(--c,var(--pulse));letter-spacing:-.02em;font-variant-numeric:tabular-nums}
 .timer-sub{font-size:14px;color:var(--bone);max-width:22ch}
 .ring-card .btn{width:100%}
-.ring-card .btn.danger{background:var(--pulse)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);width:100%;border:1px solid var(--line);border-radius:14px}
+.stats div{padding:12px 14px;border-left:1px solid var(--line)}
+.stats div:first-child{border-left:0}
+.stats b{display:block;font:500 22px var(--f-mono)}
+.stats span{font:400 10px var(--f-pixel);letter-spacing:.12em;text-transform:uppercase;color:var(--ash)}
 .toast{font:400 13px var(--f-sans);color:var(--ash);display:flex;align-items:center;gap:8px;min-height:20px}
 .toast svg{width:16px;height:16px}
-
 .moods{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.mood{background:var(--grave);border:1px solid var(--line);border-radius:var(--r);padding:22px;display:grid;gap:12px;transition:border-color .3s ease, transform .3s ease, background .3s ease;min-width:0}
-.mood svg{width:56px;height:56px}
+.mood{padding:22px;display:grid;gap:12px;transition:border-color .3s ease, transform .3s ease, background .3s ease;min-width:0}
+.mood svg{width:52px;height:52px}
 .mood h3{font-size:18px;font-weight:700;color:var(--c)}
 .mood p{margin:0;color:var(--ash);font-size:14.5px}
 .mood.active{border-color:var(--c);background:color-mix(in srgb,var(--c) 7%,var(--grave));transform:translateY(-3px)}
 @media (max-width:900px){.demo{grid-template-columns:1fr}}
 @media (max-width:460px){.moods{grid-template-columns:1fr}}
 
-/* features */
-.feats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
-.feat{background:var(--void);padding:30px 26px;display:grid;gap:12px;align-content:start}
-.feat svg{width:40px;height:40px}
-.feat h3{font-size:19px;font-weight:700}
-.feat p{margin:0;color:var(--ash);font-size:15px}
-@media (max-width:900px){.feats{grid-template-columns:1fr}}
+/* why now */
+.why{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.why .card{padding:26px;display:grid;gap:8px;align-content:start}
+.why h3{font-size:21px;font-weight:700;letter-spacing:-.01em}
+.why p{margin:0;color:var(--ash);font-size:15px}
+.why .hl{background:var(--pulse-deep);border-color:color-mix(in srgb,var(--pulse) 55%,transparent)}
+.why .hl .tag{font:500 13px var(--f-mono);color:var(--pulse)}
+@media (max-width:760px){.why{grid-template-columns:1fr}}
+
+/* comparison */
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--grave)}
+table{width:100%;border-collapse:collapse;min-width:640px}
+th,td{padding:15px 20px;text-align:center;border-bottom:1px solid var(--line);font-size:15px}
+tr:last-child td{border-bottom:0}
+th:first-child,td:first-child{text-align:left}
+thead th{font-weight:700;font-size:16px;vertical-align:bottom}
+thead th small{display:block;font:400 11px var(--f-mono);color:var(--ash);letter-spacing:.06em;text-transform:uppercase;margin-top:4px}
+thead th:first-child{font:500 11px var(--f-mono);color:var(--ash);letter-spacing:.06em;text-transform:uppercase}
+.us{background:var(--pulse-deep);box-shadow:inset 1px 0 0 color-mix(in srgb,var(--pulse) 50%,transparent),inset -1px 0 0 color-mix(in srgb,var(--pulse) 50%,transparent)}
+thead .us svg{height:16px;width:auto;margin-inline:auto}
+thead .us small{color:var(--pulse)}
+.yes,.no{display:inline-block;width:18px;height:18px}
+.yes{color:var(--pulse)}.no{color:#4a4e57}
+
+/* pricing */
+.price{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.price .card{padding:28px;display:grid;gap:6px;align-content:start}
+.price .lbl{font:500 12px var(--f-mono);color:var(--ash);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+.price .big{font:500 clamp(48px,6vw,68px)/1 var(--f-mono);color:var(--pulse);letter-spacing:-.03em}
+.price .big small{font-size:.35em;color:var(--ash);letter-spacing:0;margin-left:6px}
+.price p{margin:6px 0 0;color:var(--ash);font-size:15px}
+.price .plan .big{color:var(--bone)}
+@media (max-width:860px){.price{grid-template-columns:1fr}}
+
+/* traction + roadmap */
+.trac{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:16px}
+.trac .hero-card{background:var(--pulse);color:var(--void);border-radius:var(--r);padding:28px;display:grid;align-content:space-between;min-height:300px;position:relative}
+.trac .hero-card .lbl{font:500 12px var(--f-mono);letter-spacing:.06em;text-transform:uppercase}
+.trac .hero-card svg{position:absolute;top:24px;right:24px;width:36px;height:auto}
+.trac .hero-card b{display:block;font:500 clamp(64px,9vw,112px)/.95 var(--f-mono);letter-spacing:-.04em}
+.trac .side{display:grid;gap:16px}
+.trac .side .card{padding:26px;display:grid;align-content:center}
+.trac .side b{font:400 clamp(40px,5vw,56px)/1 var(--f-mono)}
+.trac .side span{color:var(--ash);font-size:15px;margin-top:6px}
+@media (max-width:760px){.trac{grid-template-columns:1fr}}
+.road{margin-top:clamp(56px,8vw,90px)}
+.road h3{font-size:clamp(24px,2.6vw,30px);font-weight:700;letter-spacing:-.02em;margin-bottom:32px}
+.tl{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:20px;position:relative}
+.tl::before{content:"";position:absolute;left:8px;right:8px;top:8px;height:1px;background:var(--line)}
+.tl li{list-style:none;position:relative;display:grid;gap:6px;align-content:start}
+.tl .dot{width:17px;height:17px;border-radius:50%;border:2px solid var(--c,var(--ash));background:var(--void);position:relative;z-index:1;margin-bottom:12px}
+.tl .now .dot{background:var(--pulse);border-color:var(--pulse);box-shadow:0 0 0 6px color-mix(in srgb,var(--pulse) 18%,transparent)}
+.tl .when{font:500 13px var(--f-mono);color:var(--c,var(--bone))}
+.tl strong{font-size:17px}
+.tl p{margin:0;color:var(--ash);font-size:14px}
+.tl-note{margin-top:22px;font:400 12px var(--f-mono);color:var(--ash)}
+.tl ol{margin:0;padding:0}
+@media (max-width:860px){
+  .tl{grid-template-columns:1fr;gap:26px;padding-left:34px}
+  .tl::before{left:8px;right:auto;top:8px;bottom:8px;width:1px;height:auto}
+  .tl .dot{position:absolute;left:-34px;top:0;margin:0}
+}
+
+/* team */
+.team{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.member{display:grid;grid-template-columns:120px minmax(0,1fr);gap:22px;align-items:center;padding:18px}
+.member img{width:120px;height:136px;object-fit:cover;border-radius:12px}
+.member .role{font:500 12px var(--f-mono);color:var(--pulse);letter-spacing:.06em;text-transform:uppercase}
+.member h3{font-size:21px;font-weight:700;margin-top:4px}
+.wins{display:flex;flex-wrap:wrap;align-items:center;gap:12px 28px;margin-top:28px;padding-top:22px;border-top:1px solid var(--line);font-size:14px;color:var(--bone)}
+.wins .k{font:500 12px var(--f-mono);color:var(--ash);letter-spacing:.06em;text-transform:uppercase}
+.wins b{font:500 13px var(--f-mono);color:var(--pulse);margin-right:6px}
+@media (max-width:760px){.team{grid-template-columns:1fr}}
 
 /* faq */
 .faq{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(28px,5vw,72px)}
@@ -187,29 +262,26 @@ section.block{padding-block:clamp(80px,11vw,140px)}
 details{border-bottom:1px solid var(--line)}
 summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0;font-size:18px;font-weight:600}
 summary::-webkit-details-marker{display:none}
-summary .pm{font:400 18px var(--f-pixel);color:var(--pulse);transition:transform .25s ease;flex:none}
+summary .pm{font:500 20px var(--f-mono);color:var(--pulse);transition:transform .25s ease;flex:none}
 details[open] summary .pm{transform:rotate(45deg)}
 details p{margin:0 0 22px;color:var(--ash);max-width:60ch}
 @media (max-width:900px){.faq{grid-template-columns:1fr}}
 
-/* poster cta */
-.poster{background:var(--pulse);color:var(--void);border-radius:28px;padding:clamp(36px,6vw,72px);position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:center}
-.poster h2{font-family:var(--f-pixel);font-weight:400;text-transform:uppercase;font-size:clamp(32px,5.4vw,68px);letter-spacing:.04em;line-height:1.1}
-.poster p{margin:18px 0 28px;font-size:18px;max-width:44ch;color:color-mix(in srgb,var(--void) 80%,var(--pulse))}
-.poster .btn{background:var(--void);color:var(--pulse)}
-.poster .btn:hover{box-shadow:0 0 0 6px color-mix(in srgb,var(--void) 20%,transparent)}
-.poster .big-skull{width:clamp(140px,20vw,240px);height:auto}
-.poster .bite{position:absolute;background:var(--void)}
-@media (max-width:760px){.poster{grid-template-columns:1fr}.poster .big-skull{width:120px;order:-1}}
+/* closing */
+.closing{text-align:center;display:grid;justify-items:center;gap:26px;padding-block:clamp(90px,12vw,150px)}
+.closing .masc{width:clamp(70px,8vw,96px);height:auto}
+.closing h2{font-size:clamp(38px,6vw,76px);font-weight:800;letter-spacing:-.035em;line-height:1}
+.closing .signup{justify-content:center;width:100%}
+.closing .wm{width:min(220px,50%);height:auto;opacity:.55}
 
 /* footer */
-footer{padding-block:64px 40px;color:var(--ash);font-size:14px}
+footer{padding-block:56px 40px;color:var(--ash);font-size:14px;border-top:1px solid var(--line)}
 .foot{display:grid;grid-template-columns:minmax(0,1.4fr) repeat(2,minmax(0,.6fr));gap:32px;padding-bottom:40px;border-bottom:1px solid var(--line)}
-.foot h4{margin:0 0 14px;font:400 12px var(--f-pixel);letter-spacing:.14em;text-transform:uppercase;color:var(--bone)}
+.foot h4{margin:0 0 14px;font:500 12px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--bone)}
 .foot ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
 .foot a{text-decoration:none}.foot a:hover{color:var(--bone)}
 .foot .brand svg{height:26px}
-.foot-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:24px}
+.foot-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:24px;font-family:var(--f-mono);font-size:12px}
 .linkbtn{background:none;border:0;color:var(--ash);font:inherit;cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:3px}
 .linkbtn:hover{color:var(--pulse)}
 @media (max-width:700px){.foot{grid-template-columns:1fr 1fr}.foot>div:first-child{grid-column:1/-1}}
@@ -219,7 +291,7 @@ footer{padding-block:64px 40px;color:var(--ash);font-size:14px}
 .js .rv.in{opacity:1;transform:none}
 
 /* ---------- INTRO ---------- */
-#intro{position:fixed;inset:0;z-index:100;display:grid;place-items:center;pointer-events:auto}
+#intro{position:fixed;inset:0;z-index:100;display:grid;place-items:center}
 #intro canvas{position:absolute;inset:0;width:100%;height:100%}
 #intro .stage{position:relative;z-index:2;display:grid;justify-items:center;gap:34px;width:min(860px,88vw);transition:opacity .35s ease, transform .5s ease}
 #intro .lock{width:100%;height:auto;overflow:visible}
@@ -232,18 +304,19 @@ footer{padding-block:64px 40px;color:var(--ash);font-size:14px}
 #intro .readout{display:grid;justify-items:center;gap:12px;width:min(520px,100%)}
 #intro .ecg-i{width:100%;height:56px;overflow:visible}
 #intro .ecg-i path{fill:none;stroke:var(--pulse);stroke-width:2.2;vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 6px var(--pulse))}
-#intro .status{display:flex;gap:18px;font:400 13px var(--f-pixel);letter-spacing:.16em;text-transform:uppercase;color:var(--ash)}
-#intro .status b{font-weight:400;color:var(--pulse);min-width:4ch;text-align:right}
-#intro .skip{position:absolute;right:max(16px,3vw);bottom:calc(max(16px,3vh) + env(safe-area-inset-bottom,0px));z-index:3;background:none;border:1px solid var(--line);color:var(--ash);font:400 11px var(--f-pixel);letter-spacing:.16em;text-transform:uppercase;padding:9px 12px;border-radius:9px;cursor:pointer}
+#intro .status{display:flex;gap:16px;font:500 13px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ash)}
+#intro .status b{font-weight:500;color:var(--pulse);min-width:4ch;text-align:right}
+#intro .tagline{font:700 clamp(18px,2.4vw,26px)/1.2 var(--f-sans);letter-spacing:-.01em;color:var(--pulse);opacity:0;transform:translateY(8px);transition:opacity .5s ease, transform .5s ease;text-align:center}
+#intro .tagline.on{opacity:1;transform:none}
+#intro .skip{position:absolute;right:max(16px,3vw);bottom:calc(max(16px,3vh) + env(safe-area-inset-bottom,0px));z-index:3;background:none;border:1px solid var(--line);color:var(--ash);font:500 11px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;padding:9px 12px;border-radius:9px;cursor:pointer}
 #intro .skip:hover{color:var(--bone);border-color:var(--ash)}
-#intro .corner{position:absolute;z-index:2;font:400 12px var(--f-sans);color:var(--ash);transition:opacity .3s}
+#intro .corner{position:absolute;z-index:2;font:400 12px var(--f-mono);color:var(--ash);transition:opacity .3s}
 #intro .c-tl{top:calc(max(16px,3vh) + env(safe-area-inset-top,0px));left:max(16px,3vw)}
 #intro .c-tr{top:calc(max(16px,3vh) + env(safe-area-inset-top,0px));right:max(16px,3vw)}
 #intro .c-bl{bottom:calc(max(16px,3vh) + env(safe-area-inset-bottom,0px));left:max(16px,3vw)}
 #intro.leaving .stage,#intro.leaving .corner,#intro.leaving .skip{opacity:0}
 #intro.leaving .stage{transform:scale(.96)}
 body.intro-on{overflow:hidden}
-/* hero entrance after intro */
 .js .hero .enter{opacity:0;transform:translateY(18px)}
 .js .hero.go .enter{opacity:1;transform:none;transition:opacity .8s cubic-bezier(.2,.7,.2,1) var(--d,0s),transform .8s cubic-bezier(.2,.7,.2,1) var(--d,0s)}
 
@@ -264,8 +337,9 @@ body.intro-on{overflow:hidden}
     <svg class="lock px" id="lock" viewBox="0 0 55 11" preserveAspectRatio="xMidYMid meet"></svg>
     <div class="readout">
       <svg class="ecg-i" viewBox="0 0 520 56" preserveAspectRatio="none"><path id="ecgI" d=""/></svg>
-      <div class="status"><span id="introLabel" data-pt="Checando pulso">Checking pulse</span><b id="introPct">000</b></div>
+      <div class="status"><span id="introLabel">Checking pulse</span><b id="introPct">000</b></div>
     </div>
+    <p class="tagline" id="introTag" data-pt="Não leve suas criptos para o túmulo.">Don’t take your crypto to the grave.</p>
   </div>
   <button class="skip" id="skip" type="button" data-pt="Pular">Skip</button>
 </div>
@@ -275,8 +349,9 @@ body.intro-on{overflow:hidden}
     <a class="brand" href="#top" aria-label="Deadman home"><svg class="px" data-lockup viewBox="0 0 55 11" aria-hidden="true"></svg></a>
     <nav class="nav-links" aria-label="Main">
       <a href="#how" data-pt="Como funciona">How it works</a>
-      <a href="#pulse" data-pt="Pulso">Pulse</a>
-      <a href="#security" data-pt="Segurança">Security</a>
+      <a href="#pulse" data-pt="Demo">Demo</a>
+      <a href="#compare" data-pt="Comparativo">Compare</a>
+      <a href="#pricing" data-pt="Preço">Pricing</a>
       <a href="#faq">FAQ</a>
     </nav>
     <div class="nav-right">
@@ -293,11 +368,11 @@ body.intro-on{overflow:hidden}
   <section class="hero" id="hero">
     <div class="wrap hero-grid">
       <div>
-        <p class="eyebrow enter" style="--d:.05s" data-pt="Um dead man's switch para sua carteira Solana">A dead man's switch for your Solana wallet</p>
-        <h1 class="enter" style="--d:.15s"><span data-pt="Faça check-in,">Check in,</span><br><span class="hl" data-pt="ou faça check-out.">or check out.</span></h1>
-        <p class="lede enter" style="--d:.28s" data-pt="Um toque prova que você está vivo. Se você ficar em silêncio, seus SOL e USDC vão para quem você escolheu, uma etapa de cada vez.">One tap proves you're alive. If you go silent, your SOL and USDC go to the people you chose, one release tier at a time.</p>
+        <p class="eyebrow enter" style="--d:.05s" data-pt="Dead man's switch · Feito para o Solana Seeker">Dead man's switch · Built for Solana Seeker</p>
+        <h1 class="enter" style="--d:.15s"><span data-pt="Não leve suas criptos">Don’t take your crypto</span> <span class="g" data-pt="para o túmulo.">to the grave.</span></h1>
+        <p class="lede enter" style="--d:.28s" data-pt="O Deadman libera seus SOL e USDC para seus herdeiros se você ficar em silêncio, e trava o cofre se alguém te forçar a enviar. Uma digital reinicia o relógio.">Deadman releases your SOL and USDC to your heirs if you go silent, and locks your vault if someone forces you to send. One fingerprint resets the clock.</p>
         <form class="signup enter" style="--d:.4s" id="join" novalidate>
-          <label class="sr" for="email" style="position:absolute;left:-9999px">Email</label>
+          <label for="email" style="position:absolute;left:-9999px">Email</label>
           <input id="email" type="email" placeholder="you@email.com" autocomplete="email" data-pt-ph="voce@email.com" required>
           <button class="btn btn-pulse" type="submit">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 11c0 3.5-1 6.5-3 9M8.5 6.6A6 6 0 0 1 18 11c0 2-.2 4-.8 6M6 9.5c-.4.9-.5 1.8-.5 2.5 0 2.3-.6 4.3-1.5 6M15 13c0 2.6-.5 5-1.5 7M12 7.5a3.5 3.5 0 0 0-3.5 3.5"/></svg>
@@ -306,95 +381,137 @@ body.intro-on{overflow:hidden}
         </form>
         <p class="form-note enter" style="--d:.45s" id="formNote" aria-live="polite"></p>
         <div class="hero-meta enter" style="--d:.5s">
-          <span><svg class="px" data-icon="heart" data-color="var(--pulse)"></svg><span data-pt="Prova de vida on-chain">Proof of life, on-chain</span></span>
-          <span><svg class="px" data-icon="alive" data-color="var(--pulse)"></svg><span data-pt="Feito para o Seeker">Built for Seeker</span></span>
-          <span><svg class="px" data-icon="ghost" data-color="var(--ash)"></svg><span data-pt="SOL e USDC">SOL and USDC</span></span>
+          <span><i></i><span data-pt="Alpha no ar na devnet">Alpha live on devnet</span></span>
+          <span><i></i><span data-pt="Check-ins custam 0 SOL">Check-ins cost 0 SOL</span></span>
+          <span><i></i><span data-pt="Até 8 etapas de liberação">Up to 8 release tiers</span></span>
         </div>
       </div>
 
       <div class="phone-stage enter" style="--d:.3s">
         <div class="glow" id="glow"></div>
-        <div class="phone">
-          <div class="screen">
-            <span class="notch"></span>
-            <img src="assets/app-alive.jpg" alt="Deadman app: Pulse screen, Alive, 1m 55s until next check-in" class="on" data-state="alive">
-            <img src="assets/app-missed.jpg" alt="Deadman app: Missed, 57s until tier 1 releases" data-state="missed">
-            <img src="assets/app-tierdue.jpg" alt="Deadman app: Tier due, 48m 12s past due" data-state="due">
-          </div>
+        <div class="shot floaty" id="heroShot">
+          <img src="assets/app-pulse.jpg" alt="Deadman app, Pulse screen: Alive, 1m 55s until next check-in" class="on" data-state="alive">
+          <img src="assets/app-security.jpg" alt="Deadman app, Security screen with Panic lockdown" data-state="coercion">
+          <img src="assets/app-circle.jpg" alt="Deadman app, Family Circle: silent past a release tier" data-state="due">
         </div>
-        <div class="sticker st-1"><svg class="px" data-icon="heart" data-color="var(--flat)"></svg><span data-pt="GM. Ainda vivo.">GM. Still alive.</span></div>
-        <div class="sticker st-2 state-chip" id="heroChip"><svg class="px" data-icon="alive" data-color="var(--void)"></svg><span id="heroChipTxt">Alive</span></div>
-        <div class="sticker st-3"><span class="mono" style="font-family:var(--f-mono);letter-spacing:0;text-transform:none">AppA…9PbA</span></div>
+        <span class="pill hero-chip" id="heroChip"><svg class="px" data-icon="alive" data-color="currentColor"></svg><span id="heroChipTxt">Alive</span></span>
       </div>
     </div>
     <svg class="ecg" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true"><path class="base" id="ecgBase"/><path class="trace" id="ecgTrace"/></svg>
   </section>
 
-  <div class="ticker" aria-hidden="true">
-    <div class="ticker-track" id="ticker"></div>
-  </div>
+  <div class="ticker" aria-hidden="true"><div class="ticker-track" id="ticker"></div></div>
 
-  <section class="block" id="how">
+  <section class="block" id="problem">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <p class="eyebrow" data-pt="O problema">The problem</p>
+        <h2><span data-pt="A autocustódia tem um único ponto de falha:">Self-custody has one point of failure:</span> <span class="g" data-pt="você.">you.</span></h2>
+        <p class="lede" data-pt="Seu Seed Vault bloqueia malware. Ele não faz nada se:">Your Seed Vault blocks malware. It does nothing if:</p>
+      </div>
+      <div class="threats">
+        <article class="card threat rv">
+          <div class="top"><svg class="px" data-icon="tomb" data-color="var(--flat)"></svg><span class="pill" style="--c:var(--flat)" data-pt="Silêncio">Silence</span></div>
+          <h3 data-pt="Você morre ou para de responder.">You die or stop responding.</h3>
+          <p><b>2021</b> · <span data-pt="Mircea Popescu se afogou. Até US$ 1 bi em BTC, chaves desconhecidas.">Mircea Popescu drowned. Up to $1B in BTC, keys unknown.</span></p>
+        </article>
+        <article class="card threat rv" style="transition-delay:.08s">
+          <div class="top"><svg class="px" data-icon="missed" data-color="var(--missed)"></svg><span class="pill" style="--c:var(--missed)" data-pt="Coação">Coercion</span></div>
+          <h3 data-pt="Alguém te força a enviar.">Someone forces you to send.</h3>
+          <p><b>2025</b> · <span data-pt="Um cofundador da Ledger foi sequestrado por resgate em cripto.">A Ledger co-founder was kidnapped for a crypto ransom.</span></p>
+        </article>
+        <article class="card threat rv" style="transition-delay:.16s">
+          <div class="top"><svg class="px" data-icon="ghost" data-color="var(--bone)"></svg><span class="pill" style="--c:var(--bone)" data-pt="Perda">Loss</span></div>
+          <h3 data-pt="Seu celular e suas chaves somem.">Your phone and keys are gone.</h3>
+          <p><b>2013</b> · <span data-pt="8.000 BTC jogados fora num HD. Nunca recuperados.">8,000 BTC thrown out with a hard drive. Never recovered.</span></p>
+        </article>
+      </div>
+      <p class="punch rv"><span data-pt="As carteiras de hoje são tudo ou nada.">Today’s wallets are all or nothing.</span> <span class="g" data-pt="Perdeu as chaves, perdeu o dinheiro.">Lose the keys, lose the money.</span></p>
+      <p class="src">Fox 5 NY, 2021 · The Local, 2025 · Newport landfill case</p>
+    </div>
+  </section>
+
+  <section class="block" id="how" style="padding-top:0">
     <div class="wrap">
       <div class="sec-head rv">
         <p class="eyebrow" data-pt="Como funciona">How it works</p>
-        <h2 data-pt="Do plano ao pagamento, sem ninguém apertar botão.">From plan to payout, with nobody pressing a button.</h2>
-        <p class="lede" data-pt="Você decide quem recebe, quanto e depois de quanto silêncio. O Deadman cuida do resto.">You decide who gets what, and after how much silence. Deadman handles the rest.</p>
+        <h2><span data-pt="Do plano">From plan</span> <span class="g" data-pt="ao pagamento.">to payout.</span></h2>
+        <p class="lede" data-pt="Quatro telas, do plano ao pagamento. Rodando hoje na devnet.">Four screens, from plan to payout. Running today on devnet.</p>
       </div>
-      <div class="steps">
-        <article class="step rv">
-          <div class="step-n"><span class="num" data-pt="Passo 1">Step 1</span><svg class="px" data-icon="ghost" data-color="var(--bone)"></svg></div>
-          <h3 data-pt="Monte um plano">Make a plan</h3>
-          <p data-pt="Cole uma carteira ou um código de resgate, dê um nome e divida os fundos em etapas de liberação.">Paste a wallet or a claim code, give it a name, and split the funds into release tiers.</p>
-          <div class="mini">
-            <div class="row"><span data-pt="Plano">Plan</span><span>Kids</span></div>
-            <div class="row"><span data-pt="Protegido">Protected</span><span>0.099 SOL · 0 USDC</span></div>
-            <div class="row"><span>Tier 1</span><span>25% → Mom</span></div>
-            <div class="row"><span>Tier 2</span><span>25% → Kids</span></div>
-            <div class="row"><span>Tier 3</span><span>50% → 2bLC…4XMU</span></div>
+      <div class="how">
+        <div class="how-steps">
+          <article class="hstep active" data-shot="0" style="--c:var(--bone)">
+            <span class="meta" data-pt="Demo · na devnet · 1/4">Demo · On devnet · 1/4</span>
+            <h3 data-pt="Planeje os fundos">Plan funds</h3>
+            <div class="bignum"><span>01</span><svg class="px" data-icon="sleep" data-color="var(--bone)"></svg></div>
+            <p class="say" data-pt="Defina quem recebe; o app cuida do resto.">Set who receives; the app handles the rest.</p>
+            <dl class="kv">
+              <div><dt data-pt="Plano de liberação">Release plan</dt><dd data-pt="até 8 etapas, pagas em ordem">up to 8 tiers, paid in order</dd></div>
+              <div><dt data-pt="Entrega">Delivery</dt><dd data-pt="trilho Solana ou canal privado (Cloak)">Solana rail or a private channel (Cloak)</dd></div>
+            </dl>
+            <img class="inline-shot" src="assets/app-plan.jpg" alt="New payout screen" loading="lazy">
+          </article>
+          <article class="hstep" data-shot="1" style="--c:var(--missed)">
+            <span class="meta" data-pt="Demo · na devnet · 2/4">Demo · On devnet · 2/4</span>
+            <h3 data-pt="PIN de coação">Coercion PIN</h3>
+            <div class="bignum"><span>02</span><svg class="px" data-icon="spark" data-color="var(--missed)"></svg></div>
+            <p class="say" data-pt="O cofre trava on-chain. O saque mostra um timeout falso.">The vault locks on-chain. Withdraw shows a fake timeout.</p>
+            <dl class="kv">
+              <div><dt data-pt="Bloqueio">Lockdown</dt><dd data-pt="on-chain e silencioso">on-chain and silent</dd></div>
+              <div><dt data-pt="O atacante vê">Attacker sees</dt><dd data-pt="um timeout falso, nada se mexe">a fake timeout, nothing moves</dd></div>
+            </dl>
+            <img class="inline-shot" src="assets/app-security.jpg" alt="Security screen with Panic lockdown" loading="lazy">
+          </article>
+          <article class="hstep" data-shot="2" style="--c:var(--pulse)">
+            <span class="meta" data-pt="Demo · na devnet · 3/4">Demo · On devnet · 3/4</span>
+            <h3>Check-in</h3>
+            <div class="bignum"><span>03</span><svg class="px" data-icon="love" data-color="var(--pulse)"></svg></div>
+            <p class="say" data-pt="Fazer check-in reinicia o relógio.">Checking in resets the timer.</p>
+            <dl class="kv">
+              <div><dt>Check-in</dt><dd data-pt="uma digital, sem prompt de carteira">one fingerprint, no wallet prompt</dd></div>
+              <div><dt data-pt="Custo no celular">Cost on the phone</dt><dd data-pt="0 SOL, patrocinado pela Kora">0 SOL, sponsored by Kora</dd></div>
+            </dl>
+            <img class="inline-shot" src="assets/app-pulse.jpg" alt="Pulse screen" loading="lazy">
+          </article>
+          <article class="hstep" data-shot="3" style="--c:var(--flat)">
+            <span class="meta" data-pt="Demo · na devnet · 4/4">Demo · On devnet · 4/4</span>
+            <h3 data-pt="Silêncio">Silence</h3>
+            <div class="bignum"><span>04</span><svg class="px" data-icon="alarm" data-color="var(--flat)"></svg></div>
+            <p class="say" data-pt="Sem check-in, as contas dos herdeiros recebem.">No check-in, and the heir accounts receive.</p>
+            <dl class="kv">
+              <div><dt data-pt="Exemplo">Example</dt><dd data-pt="etapa de 0,5 SOL → 0,49 SOL para o herdeiro">0.5 SOL tier → 0.49 SOL to the heir</dd></div>
+              <div><dt data-pt="Taxa">Fee</dt><dd data-pt="0,01 SOL, só na liberação">0.01 SOL, only on release</dd></div>
+            </dl>
+            <img class="inline-shot" src="assets/app-circle.jpg" alt="Family Circle screen" loading="lazy">
+          </article>
+        </div>
+        <div class="how-phone" aria-hidden="true">
+          <div class="shot" id="howShot">
+            <img src="assets/app-plan.jpg" alt="" class="on">
+            <img src="assets/app-security.jpg" alt="">
+            <img src="assets/app-pulse.jpg" alt="">
+            <img src="assets/app-circle.jpg" alt="">
           </div>
-        </article>
-        <article class="step rv" style="transition-delay:.08s">
-          <div class="step-n"><span class="num" data-pt="Passo 2">Step 2</span><svg class="px" data-icon="heart" data-color="var(--pulse)"></svg></div>
-          <h3 data-pt="Faça check-in">Check in</h3>
-          <p data-pt="Um toque reinicia o relógio. Enquanto você aparece, nada se mexe.">One tap resets the clock. As long as you show up, nothing moves.</p>
-          <div class="mini">
-            <div class="row"><span>Status</span><span class="g">ALIVE</span></div>
-            <div class="row"><span data-pt="Próximo check-in">Next check-in</span><span class="g">14h 02m</span></div>
-            <div class="bar"><i style="width:62%"></i></div>
-            <div class="row"><span data-pt="Pulso registrado">Pulse recorded</span><span data-pt="em 4 planos">on 4 plans</span></div>
-          </div>
-        </article>
-        <article class="step rv" style="transition-delay:.16s">
-          <div class="step-n"><span class="num" data-pt="Passo 3">Step 3</span><svg class="px" data-icon="tomb" data-color="var(--flat)"></svg></div>
-          <h3 data-pt="O silêncio libera">Silence releases</h3>
-          <p data-pt="Perdeu o check-in? Começa a contagem. Cada etapa vencida paga direto para o beneficiário.">Miss a check-in and a countdown starts. Each tier that comes due pays the beneficiary directly.</p>
-          <div class="mini">
-            <div class="row"><span>Status</span><span class="r">TIER DUE</span></div>
-            <div class="row"><span>Tier 1</span><span class="r">48m 12s</span></div>
-            <div class="row"><span data-pt="Liberando para">Releasing to</span><span>4Yep…KMbF</span></div>
-            <div class="row"><span data-pt="Taxa">Fee</span><span>0</span></div>
-          </div>
-        </article>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="block" id="pulse" style="padding-top:0">
+  <section class="block" id="pulse">
     <div class="wrap">
       <div class="sec-head rv">
         <p class="eyebrow" data-pt="Uma caveira, quatro humores">One skull, four moods</p>
-        <h2 data-pt="Teste o pulso. Depois pare de apertar.">Try the pulse. Then stop tapping.</h2>
-        <p class="lede" data-pt="Uma demonstração acelerada: faça check-in para manter o status vivo, ou deixe o relógio correr e veja cada etapa acontecer.">A sped-up demo. Check in to stay alive, or let the clock run and watch each stage play out.</p>
+        <h2><span data-pt="Teste o pulso.">Try the pulse.</span> <span class="g" data-pt="Depois pare de tocar.">Then stop tapping.</span></h2>
+        <p class="lede" data-pt="Uma demonstração acelerada: faça check-in para continuar vivo, ou deixe o relógio correr e veja cada etapa acontecer.">A sped-up demo. Check in to stay alive, or let the clock run and watch each stage play out.</p>
       </div>
       <div class="demo">
-        <div class="ring-card rv">
-          <span class="demo-label" data-pt="demo · 1s = 1h">demo · 1s = 1h</span>
+        <div class="card ring-card rv">
+          <span class="demo-label">demo · 1s = 1h</span>
           <div class="ring">
             <svg viewBox="0 0 200 200" id="ring" aria-hidden="true"></svg>
             <div class="ring-center">
-              <span class="chip" id="dChip"><svg class="px" data-icon="alive" data-color="currentColor"></svg><span id="dChipTxt">Alive</span></span>
-              <span class="timer" id="dTimer" aria-live="off">12s</span>
+              <span class="pill" id="dChip"><svg class="px" data-icon="alive" data-color="currentColor"></svg><span id="dChipTxt">Alive</span></span>
+              <span class="timer" id="dTimer">12s</span>
               <span class="timer-sub" id="dSub">until next check-in</span>
             </div>
           </div>
@@ -402,28 +519,121 @@ body.intro-on{overflow:hidden}
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 11c0 3.5-1 6.5-3 9M8.5 6.6A6 6 0 0 1 18 11c0 2-.2 4-.8 6M6 9.5c-.4.9-.5 1.8-.5 2.5 0 2.3-.6 4.3-1.5 6M15 13c0 2.6-.5 5-1.5 7M12 7.5a3.5 3.5 0 0 0-3.5 3.5"/></svg>
             <span id="dBtnTxt">Check in</span>
           </button>
+          <div class="stats">
+            <div><b id="sStreak">2</b><span data-pt="Sequência">Day streak</span></div>
+            <div><b id="sBest">2</b><span data-pt="Recorde">Best</span></div>
+            <div><b>2</b><span data-pt="Planos">Plans</span></div>
+          </div>
           <div class="toast" id="dToast" aria-live="polite"></div>
         </div>
         <div class="moods">
-          <article class="mood rv active" data-mood="alive" style="--c:var(--pulse)"><svg class="px" data-icon="alive" data-color="var(--pulse)"></svg><h3 data-pt="Vivo">Alive</h3><p data-pt="Check-in em dia. Nada se mexe.">Checked in on time. Nothing moves.</p></article>
-          <article class="mood rv" data-mood="missed" style="--c:var(--missed);transition-delay:.06s"><svg class="px" data-icon="missed" data-color="var(--missed)"></svg><h3 data-pt="Check-in perdido">Missed a check-in</h3><p data-pt="O silêncio começou. A próxima etapa está em contagem.">Silence has started. The next release tier is counting down.</p></article>
-          <article class="mood rv" data-mood="due" style="--c:var(--flat);transition-delay:.12s"><svg class="px" data-icon="due" data-color="var(--flat)"></svg><h3 data-pt="Etapa vencida">Silent past a release tier</h3><p data-pt="Uma etapa venceu. Os fundos vão para o beneficiário.">A tier is due. Funds go to the beneficiary.</p></article>
-          <article class="mood rv" data-mood="released" style="--c:var(--ash);transition-delay:.18s"><svg class="px" data-icon="released" data-color="var(--ash)"></svg><h3 data-pt="Plano liberado">Plan fully released</h3><p data-pt="Todas as etapas foram pagas. Descanse em paz.">Every tier has paid out. Rest easy.</p></article>
+          <article class="card mood rv active" data-mood="alive" style="--c:var(--pulse)"><svg class="px" data-icon="alive" data-color="var(--pulse)"></svg><h3 data-pt="Vivo">Alive</h3><p data-pt="Check-in em dia. Nada se mexe.">Checked in on time. Nothing moves.</p></article>
+          <article class="card mood rv" data-mood="missed" style="--c:var(--missed);transition-delay:.06s"><svg class="px" data-icon="missed" data-color="var(--missed)"></svg><h3 data-pt="Check-in perdido">Missed a check-in</h3><p data-pt="O silêncio começou. A próxima etapa está em contagem.">Silence has started. The next release tier is counting down.</p></article>
+          <article class="card mood rv" data-mood="due" style="--c:var(--flat);transition-delay:.12s"><svg class="px" data-icon="due" data-color="var(--flat)"></svg><h3 data-pt="Etapa vencida">Silent past a release tier</h3><p data-pt="Uma etapa venceu. Os fundos vão para o herdeiro.">A tier is due. Funds go to the heir.</p></article>
+          <article class="card mood rv" data-mood="released" style="--c:var(--ash);transition-delay:.18s"><svg class="px" data-icon="released" data-color="var(--ash)"></svg><h3 data-pt="Plano liberado">Plan fully released</h3><p data-pt="Todas as etapas foram pagas. Descanse em paz.">Every tier has paid out. Rest easy.</p></article>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="block" id="security" style="padding-top:0">
+  <section class="block" id="why" style="padding-top:0">
     <div class="wrap">
       <div class="sec-head rv">
-        <p class="eyebrow" data-pt="Segurança">Security</p>
-        <h2 data-pt="Você escolhe como o dinheiro chega.">You choose how the money arrives.</h2>
+        <p class="eyebrow" data-pt="Por que agora">Why now</p>
+        <h2><span data-pt="O celular é a nova">Phones are the new</span> <span class="g" data-pt="carteira.">wallet.</span></h2>
       </div>
-      <div class="feats rv">
-        <div class="feat"><svg class="px" data-icon="heart" data-color="var(--pulse)"></svg><h3 data-pt="Transferência normal">Normal transfer</h3><p data-pt="Direto para a carteira Solana do beneficiário. Qualquer pessoa pode ver na blockchain. Sem taxa.">Straight to the beneficiary's Solana wallet, visible on-chain like any transfer. No fee.</p></div>
-        <div class="feat"><svg class="px" data-icon="ghost" data-color="var(--bone)"></svg><h3 data-pt="Privada (Cloak)">Private (Cloak)</h3><p data-pt="Oculta na Solana. O beneficiário usa o app Deadman e o código de resgate que você enviar.">Hidden on Solana. The beneficiary claims it in the Deadman app with a code you send them.</p></div>
-        <div class="feat"><svg class="px" data-icon="tomb" data-color="var(--missed)"></svg><h3 data-pt="Liberação em etapas">Tiered release</h3><p data-pt="Nada sai de uma vez. Cada etapa tem seu próprio prazo e destino, e um check-in interrompe tudo.">Nothing leaves at once. Each tier has its own deadline and destination, and one check-in stops the clock.</p></div>
+      <div class="why">
+        <div class="card rv"><h3 data-pt="Um cofre de hardware em cada Seeker">A hardware vault in every Seeker</h3><p data-pt="As chaves do Seed Vault nunca saem do chip seguro.">Seed Vault keys never leave the secure chip.</p></div>
+        <div class="card rv" style="transition-delay:.06s"><h3 data-pt="Ataques físicos estão subindo">Wrench attacks are rising</h3><p><span class="g mono">72</span> <span data-pt="ataques físicos contra donos de cripto em 2025, alta de 75% sobre 2024.">physical attacks on crypto holders in 2025, up 75% on 2024.</span></p></div>
+        <div class="card rv" style="transition-delay:.12s"><h3 data-pt="Envio privado funciona no celular">Private send works on mobile</h3><p data-pt="O Cloak está no ar na mainnet da Solana; o NEAR Intents entrega ZEC blindado.">Cloak is live on Solana mainnet; NEAR Intents delivers shielded ZEC.</p></div>
+        <div class="card hl rv" style="transition-delay:.18s"><span class="tag">Kora</span><h3 data-pt="Check-ins custam 0 SOL para você">Check-ins cost the user 0 SOL</h3><p data-pt="A Kora paga a taxa de ~0,000005 SOL, então a chave de check-in nunca precisa de SOL: nada para recarregar, nada para drenar.">Kora pays the ~0.000005 SOL fee, so the check-in key never needs SOL: nothing to top up, nothing to drain.</p></div>
+      </div>
+      <p class="src">CertiK, 2025 · 5,000-lamport base fee · Cloak live since 08/24/2026</p>
+    </div>
+  </section>
+
+  <section class="block" id="compare" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <p class="eyebrow" data-pt="Comparativo">Compare</p>
+        <h2><span data-pt="Eles herdam.">They inherit.</span> <span class="g" data-pt="Nós revidamos.">We fight back.</span></h2>
+      </div>
+      <div class="table-wrap rv">
+        <table>
+          <thead><tr>
+            <th scope="col" data-pt="O que você tem">What you get</th>
+            <th scope="col"><span data-pt="Herança">Inheritance</span><small data-pt="15+ projetos">15+ projects</small></th>
+            <th scope="col">Cipherwill<small data-pt="US$ 40 / ano">$40 / year</small></th>
+            <th scope="col" class="us"><svg class="px" data-lockup viewBox="0 0 55 11" role="img" aria-label="Deadman"></svg><small data-pt="App Seeker">Seeker app</small></th>
+          </tr></thead>
+          <tbody id="cmpBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="pricing" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <p class="eyebrow" data-pt="Preço">Pricing</p>
+        <h2><span data-pt="Pague conforme usa.">Pay as you use.</span> <span class="g" data-pt="Só cobramos na liberação.">We only charge on release.</span></h2>
+      </div>
+      <div class="price">
+        <div class="card rv"><span class="lbl" data-pt="Taxa de liberação">Release fee</span><span class="big">2%</span><p data-pt="no trilho Solana">on the Solana rail</p></div>
+        <div class="card rv" style="transition-delay:.06s"><span class="lbl" data-pt="Taxa de liberação">Release fee</span><span class="big">3%</span><p data-pt="em canais privados">on private channels</p></div>
+        <div class="card plan rv" style="transition-delay:.12s"><span class="lbl" data-pt="Plano mensal opcional">Optional monthly plan</span><span class="big">10<small>USDC / 30d</small></span><p data-pt="Mínimo de 12 meses, 0% de taxa em todos os planos.">12-month minimum, 0% fee on every plan.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="traction" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <p class="eyebrow" data-pt="Tração">Traction</p>
+        <h2><span data-pt="SOL de verdade.">Real SOL.</span> <span class="g" data-pt="Testers de verdade.">Real testers.</span></h2>
+      </div>
+      <div class="trac">
+        <div class="hero-card rv">
+          <span class="lbl" data-pt="Protegido no alpha">Protected in alpha</span>
+          <svg class="px" data-icon="mascot" data-color="var(--void)"></svg>
+          <div><b>200+ SOL</b><span data-pt="passaram por fluxos completos do dono ao herdeiro">run through full owner-to-heir flows</span></div>
+        </div>
+        <div class="side">
+          <div class="card rv"><b>23</b><span data-pt="pessoas na lista de espera">people on the waitlist</span></div>
+          <div class="card rv"><b>10</b><span data-pt="testers no alpha">alpha testers</span></div>
+        </div>
+      </div>
+      <p class="src" data-pt="Dados internos, out 2026">Internal data, Oct 2026</p>
+
+      <div class="road rv">
+        <h3><span data-pt="Da devnet para">From devnet to</span> <span class="g" data-pt="todo Android.">every Android.</span></h3>
+        <ol class="tl">
+          <li class="now" style="--c:var(--pulse)"><span class="dot"></span><span class="when"><span data-pt="OUT 2026">OCT 2026</span> <span class="pill" style="padding:3px 6px;font-size:9px" data-pt="Agora">Now</span></span><strong data-pt="Alpha no ar">Alpha live</strong><p data-pt="APK liberado. Entrada no CLOCK IN em 8 de out.">APK out. CLOCK IN entry Oct 8.</p></li>
+          <li style="--c:var(--pulse)"><span class="dot"></span><span class="when" data-pt="NOV 2026">NOV 2026</span><strong data-pt="Fim do alpha">Alpha closes</strong><p data-pt="O feedback dos testers entra no app.">Tester feedback goes into the app.</p></li>
+          <li style="--c:var(--missed)"><span class="dot"></span><span class="when">Q1 2027</span><strong data-pt="Endurecimento">Hardening</strong><p data-pt="Auditoria externa, multisig, build verificável, fuzzing.">External audit, multisig, verifiable build, fuzzing.</p></li>
+          <li style="--c:var(--bone)"><span class="dot"></span><span class="when">Q2 2027</span><strong data-pt="Lançamento na mainnet">Mainnet launch</strong><p data-pt="Lançamento na Solana dApp Store.">Solana dApp Store release.</p></li>
+          <li style="--c:var(--ash)"><span class="dot"></span><span class="when" data-pt="S2 2027">H2 2027</span><strong data-pt="Todo Android">Every Android</strong><p data-pt="Mesmo app, qualquer carteira Android.">Same app, any Android wallet.</p></li>
+        </ol>
+        <p class="tl-note" data-pt="Datas de 2027 são metas">2027 dates are targets</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="team" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <p class="eyebrow" data-pt="Time">Team</p>
+        <h2><span data-pt="Dois builders.">Two builders.</span> <span class="g" data-pt="Dois 1º lugares.">Two 1st places.</span></h2>
+      </div>
+      <div class="team">
+        <div class="card member rv"><img src="assets/team-gabriel.jpg" alt="Gabriel Neugebauer" loading="lazy"><div><span class="role" data-pt="Desenvolvedor">Developer</span><h3>Gabriel Neugebauer</h3></div></div>
+        <div class="card member rv" style="transition-delay:.06s"><img src="assets/team-vitoria.jpg" alt="Vitória Tumelero" loading="lazy"><div><span class="role" data-pt="Designer">Designer</span><h3>Vitória Tumelero</h3></div></div>
+      </div>
+      <div class="wins rv">
+        <span class="k" data-pt="Hackathons vencidos">Hackathon wins</span>
+        <span><b>1ST</b>Solana × Cursor Hackathon</span>
+        <span><b>1ST</b>Superteam BR University Hackathon</span>
+        <span class="pill" style="--c:var(--bone)" data-pt="+1 mascote">+1 mascot</span>
       </div>
     </div>
   </section>
@@ -432,27 +642,29 @@ body.intro-on{overflow:hidden}
     <div class="wrap faq">
       <div class="sec-head rv" style="margin:0">
         <p class="eyebrow">FAQ</p>
-        <h2 data-pt="Perguntas que ninguém gosta de fazer.">Questions nobody likes asking.</h2>
+        <h2><span data-pt="Perguntas que ninguém">Questions nobody</span> <span class="g" data-pt="gosta de fazer.">likes asking.</span></h2>
       </div>
       <div class="faq-list rv">
-        <details><summary><span data-pt="O que é um dead man's switch?">What is a dead man's switch?</span><span class="pm">+</span></summary><p data-pt="Um mecanismo que age quando você para de responder. No Deadman, você faz check-in regularmente; se parar, seus planos de liberação entram em ação.">A mechanism that acts when you stop responding. In Deadman you check in regularly. If you stop, your release plans kick in.</p></details>
-        <details><summary><span data-pt="Quem pode receber os fundos?">Who can receive the funds?</span><span class="pm">+</span></summary><p data-pt="Qualquer carteira Solana, ou alguém sem carteira por meio de um código de resgate. O nome do beneficiário fica salvo só no seu celular.">Any Solana wallet, or someone without one through a claim code. The beneficiary's name is only saved on your phone.</p></details>
-        <details><summary><span data-pt="O que é uma etapa de liberação?">What is a release tier?</span><span class="pm">+</span></summary><p data-pt="Uma parte do plano com prazo próprio. Ex.: 25% para a mãe após 10 dias de silêncio, 50% para os filhos depois.">A slice of the plan with its own deadline. For example, 25% to Mom after 10 days of silence, then 50% to the kids.</p></details>
-        <details><summary><span data-pt="Quais tokens são suportados?">Which tokens are supported?</span><span class="pm">+</span></summary><p data-pt="SOL e USDC na Solana.">SOL and USDC on Solana.</p></details>
-        <details><summary><span data-pt="E se eu só esquecer?">What if I just forget?</span><span class="pm">+</span></summary><p data-pt="Você recebe avisos quando o check-in está perto e quando passa do prazo. Um check-in a qualquer momento antes de uma etapa vencer interrompe a liberação.">You get nudges when a check-in is close and when it's overdue. Checking in any time before a tier comes due stops the release.</p></details>
+        <details><summary><span data-pt="O que é um dead man's switch?">What is a dead man's switch?</span><span class="pm">+</span></summary><p data-pt="Um mecanismo que age quando você para de responder. No Deadman, você faz check-in com a digital; se parar, seus planos de liberação pagam os herdeiros, etapa por etapa.">A mechanism that acts when you stop responding. In Deadman you check in with your fingerprint. If you stop, your release plans pay your heirs, tier by tier.</p></details>
+        <details><summary><span data-pt="O que faz o PIN de coação?">What does the coercion PIN do?</span><span class="pm">+</span></summary><p data-pt="Se alguém te forçar a sacar, use o PIN de coação. O cofre trava on-chain em silêncio e o saque mostra um timeout falso. Nada se mexe.">If someone forces you to withdraw, enter the coercion PIN. The vault locks on-chain without a sound and the withdrawal shows a fake timeout. Nothing moves.</p></details>
+        <details><summary><span data-pt="Quanto custa um check-in?">How much does a check-in cost?</span><span class="pm">+</span></summary><p data-pt="Nada. A Kora patrocina a taxa de rede, então a chave de check-in nunca precisa de SOL.">Nothing. Kora sponsors the network fee, so the check-in key never needs SOL.</p></details>
+        <details><summary><span data-pt="Quanto o Deadman cobra?">What does Deadman charge?</span><span class="pm">+</span></summary><p data-pt="Só cobramos quando uma etapa é liberada: 2% no trilho Solana, 3% em canais privados. Ou o plano mensal opcional de 10 USDC a cada 30 dias, com 0% de taxa.">Only when a tier is released: 2% on the Solana rail, 3% on private channels. Or the optional monthly plan of 10 USDC every 30 days with a 0% fee.</p></details>
+        <details><summary><span data-pt="Quem pode receber os fundos?">Who can receive the funds?</span><span class="pm">+</span></summary><p data-pt="Qualquer carteira Solana, ou alguém sem carteira por meio de um código de resgate via Cloak. Cada plano pode ter até 8 etapas, pagas em ordem.">Any Solana wallet, or someone without one through a Cloak claim code. Each plan can have up to 8 tiers, paid in order.</p></details>
+        <details><summary><span data-pt="Quando sai para a mainnet?">When is mainnet?</span><span class="pm">+</span></summary><p data-pt="O alpha está no ar na devnet. A meta é lançar na Solana dApp Store no 2º trimestre de 2027, depois de uma auditoria externa.">The alpha is live on devnet. The target is a Solana dApp Store release in Q2 2027, after an external audit.</p></details>
       </div>
     </div>
   </section>
 
-  <section class="wrap" style="padding-bottom:40px">
-    <div class="poster rv">
-      <div>
-        <h2><span data-pt="Faça check-in,">Check in,</span><br><span data-pt="ou faça check-out.">or check out.</span></h2>
-        <p data-pt="Deadman chega primeiro ao Solana Seeker. Entre na lista e seja avisado no lançamento.">Deadman is coming to Solana Seeker first. Join the list and hear the moment it ships.</p>
-        <a class="btn" href="#join" data-pt="Entrar na lista">Join waitlist</a>
-      </div>
-      <svg class="px big-skull" data-icon="alive" data-color="var(--void)" aria-hidden="true"></svg>
-    </div>
+  <section class="wrap closing" id="join-end">
+    <svg class="px masc rv" data-icon="mascot" data-color="var(--pulse)" aria-hidden="true"></svg>
+    <h2 class="rv"><span data-pt="Suas chaves morrem com você.">Your keys die with you.</span><br><span class="g" data-pt="Suas criptos, não.">Your crypto doesn’t.</span></h2>
+    <form class="signup rv" id="join2" novalidate>
+      <label for="email2" style="position:absolute;left:-9999px">Email</label>
+      <input id="email2" type="email" placeholder="you@email.com" autocomplete="email" data-pt-ph="voce@email.com" required>
+      <button class="btn btn-pulse" type="submit"><span data-pt="Entrar na lista">Join waitlist</span></button>
+    </form>
+    <p class="form-note" id="formNote2" aria-live="polite" style="margin:0"></p>
+    <svg class="px wm" data-word viewBox="0 0 41 7" aria-hidden="true"></svg>
   </section>
 </main>
 
@@ -463,12 +675,12 @@ body.intro-on{overflow:hidden}
         <a class="brand" href="#top" aria-label="Deadman"><svg class="px" data-lockup viewBox="0 0 55 11" aria-hidden="true"></svg></a>
         <p style="margin:0;max-width:34ch" data-pt="Um dead man's switch para sua carteira Solana. Feito para o Solana Seeker.">A dead man's switch for your Solana wallet. Built for Solana Seeker.</p>
       </div>
-      <div><h4 data-pt="Produto">Product</h4><ul><li><a href="#how" data-pt="Como funciona">How it works</a></li><li><a href="#pulse" data-pt="Pulso">Pulse</a></li><li><a href="#security" data-pt="Segurança">Security</a></li></ul></div>
-      <div><h4 data-pt="Projeto">Project</h4><ul><li><a href="#faq">FAQ</a></li><li><a href="#join" data-pt="Lista de espera">Waitlist</a></li><li><button class="linkbtn" type="button" id="replay" data-pt="Rever abertura">Replay intro</button></li></ul></div>
+      <div><h4 data-pt="Produto">Product</h4><ul><li><a href="#how" data-pt="Como funciona">How it works</a></li><li><a href="#pulse">Demo</a></li><li><a href="#pricing" data-pt="Preço">Pricing</a></li></ul></div>
+      <div><h4 data-pt="Projeto">Project</h4><ul><li><a href="#team" data-pt="Time">Team</a></li><li><a href="#faq">FAQ</a></li><li><button class="linkbtn" type="button" id="replay" data-pt="Rever abertura">Replay intro</button></li></ul></div>
     </div>
     <div class="foot-bottom">
       <span>© 2026 Deadman</span>
-      <span class="pixel" style="font-size:11px;letter-spacing:.16em;color:var(--pulse)" data-pt="Ainda batendo">Still beating</span>
+      <span class="g" data-pt="Ainda batendo.">Still beating.</span>
     </div>
   </div>
 </footer>
@@ -478,19 +690,36 @@ body.intro-on{overflow:hidden}
   document.documentElement.classList.add('js');
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------- pixel art (traced from the brand identity) ---------- */
+  /* ---------- pixel art (traced from the brand identity and pitch deck) ---------- */
   var TOP = ["...#####...",".#########.","###########","###########"];
   var JAW = ["#####.#####",".#########.","..#######..","..#.#.#.#.."];
+  var BODY = ["...........","...#####...","##...#...##","##.#####.##","...#...#..."];
+  var LOGO = TOP.concat(["##...#...##","##...#...##","##...#...##"], JAW);
   var G = {
-    logo:     TOP.concat(["##...#...##","##...#...##","##...#...##"], JAW),
+    logo: LOGO,
     alive:    TOP.concat(["##...######","##...##.###","##...#.#.##"], JAW),
     missed:   TOP.concat(["##...#...##","##..##..###","##...#...##"], JAW),
     due:      TOP.concat(["##.#.#.#.##","###.###.###","##.#.#.#.##"], JAW),
     released: TOP.concat(["###########","##...#...##","###########"], JAW),
+    mascot: LOGO.concat(BODY),
     heart: [".###...###.","#####.#####","###########","####.######","#...##....#",".####.####.","..#######..","...#####...","....###....",".....#....."],
     ghost: ["...#####...",".#########.",".#########.","##..###..##","##..###..##","###########","###########","###.....###","###########","###########","##.##.##.##"],
     tomb:  ["...#####...",".#########.","###########","#..##.#..##","#.#.#.#.#.#","#..##.#..##","#.#.#.#.###","#.#.#.#.###","###########","###########","###########"]
   };
+  // deck-style step marks: mascot with a small extra beside it (zzz, sparks, hearts, alarm)
+  function withExtra(grid, extra, left){
+    var w = 4, out = [];
+    for (var y = 0; y < grid.length; y++){
+      var e = (extra[y] || '').padEnd(w, '.');
+      out.push(left ? e + grid[y] + e.split('').reverse().join('') : grid[y] + e);
+    }
+    return out;
+  }
+  G.sleep = withExtra(G.mascot, ["..##","...#","..#.","..##"]);
+  G.spark = withExtra(G.mascot, ["","",".#..","###.",".#.."], true);
+  G.love  = withExtra(G.mascot, ["","##..","###.",".#.."], true);
+  G.alarm = withExtra(G.mascot, ["..#.","..#.","..#.","....","..#."], true);
+
   var WORD = [
     "####..#####..###..####..#...#..###..#...#",
     "#...#.#.....#...#.#...#.##.##.#...#.##..#",
@@ -501,7 +730,7 @@ body.intro-on{overflow:hidden}
     "####..#####.#...#.####..#...#.#...#.#...#"
   ];
   var NS = 'http://www.w3.org/2000/svg';
-  function runs(grid, dx, dy){ // merge horizontal runs into rects
+  function runs(grid, dx, dy){
     var out = '';
     grid.forEach(function(row, y){
       var x = 0;
@@ -512,24 +741,41 @@ body.intro-on{overflow:hidden}
     });
     return out;
   }
+  function icon(name, color){ var g = G[name]; return '<svg class="px" viewBox="0 0 ' + g[0].length + ' ' + g.length + '"><g fill="' + color + '">' + runs(g,0,0) + '</g></svg>'; }
   document.querySelectorAll('svg[data-icon]').forEach(function(svg){
     var g = G[svg.dataset.icon]; if (!g) return;
     svg.setAttribute('viewBox', '0 0 ' + g[0].length + ' ' + g.length);
     svg.innerHTML = '<g fill="' + (svg.dataset.color || 'currentColor') + '">' + runs(g, 0, 0) + '</g>';
   });
   document.querySelectorAll('svg[data-lockup]').forEach(function(svg){
-    svg.innerHTML = '<g style="fill:var(--pulse)">' + runs(G.logo, 0, 0) + '</g><g style="fill:var(--bone)">' + runs(WORD, 14, 2) + '</g>';
+    svg.innerHTML = '<g style="fill:var(--pulse)">' + runs(LOGO, 0, 0) + '</g><g style="fill:var(--bone)">' + runs(WORD, 14, 2) + '</g>';
   });
+  document.querySelectorAll('svg[data-word]').forEach(function(svg){ svg.innerHTML = '<g style="fill:var(--ash)">' + runs(WORD, 0, 0) + '</g>'; });
+
+  /* ---------- comparison table ---------- */
+  var CMP = [
+    ['Native phone app','App nativo no celular',0,0],
+    ['Release to heirs on silence','Liberação para herdeiros no silêncio',1,1],
+    ['Duress protection','Proteção contra coação',0,0],
+    ['Guard key, no wallet prompt','Chave guardiã, sem prompt de carteira',0,0],
+    ['Tiered release, not one trigger','Liberação em etapas, não um gatilho só',0,0],
+    ['Private delivery to heirs','Entrega privada aos herdeiros',0,0]
+  ];
+  var YES = '<svg class="yes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="square"><path d="M4 12.5l5 5L20 6.5"/></svg>';
+  var NO  = '<svg class="no" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="square"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+  document.getElementById('cmpBody').innerHTML = CMP.map(function(r){
+    return '<tr><td data-pt="' + r[1] + '">' + r[0] + '</td><td aria-label="' + (r[2]?'yes':'no') + '">' + (r[2]?YES:NO) + '</td><td aria-label="' + (r[3]?'yes':'no') + '">' + (r[3]?YES:NO) + '</td><td class="us" aria-label="yes">' + YES + '</td></tr>';
+  }).join('');
 
   /* ---------- language toggle ---------- */
   var lang = 'en';
-  try { lang = localStorage.getItem('dm-lang') || (navigator.language || '').toLowerCase().indexOf('pt') === 0 && 'pt' || 'en'; } catch(e){}
-  var tr = { alive:['Alive','Vivo'], missed:['Missed','Perdido'], due:['Tier due','Etapa vencida'], released:['Released','Liberado'],
+  try { lang = localStorage.getItem('dm-lang') || ((navigator.language || '').toLowerCase().indexOf('pt') === 0 ? 'pt' : 'en'); } catch(e){}
+  var tr = { alive:['Alive','Vivo'], missed:['Missed','Perdido'], due:['Tier due','Etapa vencida'], released:['Released','Liberado'], coercion:['Lockdown','Bloqueado'],
     untilNext:['until next check-in','até o próximo check-in'], untilTier:['until tier 1 releases','até a etapa 1 liberar'],
     pastDue:['past due, releasing to 4Yep…KMbF','vencida, liberando para 4Yep…KMbF'], restEasy:['tiers paid out. Rest easy.','etapas pagas. Descanse em paz.'],
     checkin:['Check in','Fazer check-in'], stop:['Check in to stop','Check-in para parar'], again:['Start again','Começar de novo'],
-    recorded:['Pulse recorded on 4 plans.','Pulso registrado em 4 planos.'], thanks:['You are on the list. Stay alive.','Você está na lista. Continue vivo.'],
-    bad:['Enter a valid email so we can reach you.','Digite um email válido para podermos te avisar.'], pct:['Checking pulse','Checando pulso'], ok:['Alive.','Vivo.'] };
+    recorded:['Pulse recorded on 2 plans.','Pulso registrado em 2 planos.'], thanks:['You are on the list. Stay alive.','Você está na lista. Continue vivo.'],
+    bad:['Enter a valid email so we can reach you.','Digite um email válido para podermos te avisar.'], pct:['Checking pulse','Checando pulso'], ok:['Alive.','Vivo.'], of3:['3 of 3','3 de 3'] };
   function t(k){ return tr[k][lang === 'pt' ? 1 : 0]; }
   function applyLang(){
     document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
@@ -544,6 +790,7 @@ body.intro-on{overflow:hidden}
     document.querySelectorAll('.lang button').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.lang === lang); });
     if (window.__demoRender) window.__demoRender();
     if (window.__heroChip) window.__heroChip();
+    if (window.__ticker) window.__ticker();
   }
   document.querySelectorAll('.lang button').forEach(function(b){
     b.addEventListener('click', function(){ lang = b.dataset.lang; try{ localStorage.setItem('dm-lang', lang); }catch(e){} applyLang(); });
@@ -554,7 +801,7 @@ body.intro-on{overflow:hidden}
   function onScroll(){ nav.classList.toggle('scrolled', scrollY > 20); }
   addEventListener('scroll', onScroll, {passive:true}); onScroll();
 
-  /* ---------- ECG paths ---------- */
+  /* ---------- ECG ---------- */
   function beatPath(w, h, every, mid){
     var d = 'M0 ' + mid, x = 0;
     while (x < w){
@@ -571,52 +818,73 @@ body.intro-on{overflow:hidden}
   document.getElementById('ecgTrace').setAttribute('d', hp);
 
   /* ---------- ticker ---------- */
-  var tags = [['t-pulse','alive','Check in'],['t-bone','heart','Still alive'],['t-missed','missed','Missed'],['t-grave','heart','Proof of life'],
-              ['t-flat','due','Tier due'],['t-bone','tomb','Here lies my seed phrase'],['t-ash','ghost','Released. Rest easy.'],['t-pulse',null,'Built for Seeker'],['t-grave','alive',"Dead man's switch"]];
-  var tk = document.getElementById('ticker'), html = '';
-  tags.forEach(function(x){
-    var ic = x[1] ? '<svg class="px" viewBox="0 0 11 ' + G[x[1]].length + '"><g fill="currentColor">' + runs(G[x[1]],0,0) + '</g></svg>' : '';
-    html += '<span class="tag ' + x[0] + '">' + ic + x[2] + '</span>';
-  });
-  tk.innerHTML = html + html;
+  var items = [
+    ['heart','var(--pulse)','<b>1ST</b> Solana × Cursor Hackathon','<b>1º</b> Solana × Cursor Hackathon'],
+    ['alive','var(--pulse)','<b>1ST</b> Superteam BR University Hackathon','<b>1º</b> Superteam BR University Hackathon'],
+    ['ghost','var(--bone)','Built for Solana Seeker','Feito para o Solana Seeker'],
+    ['heart','var(--pulse)','Check-ins sponsored by <b>Kora</b>','Check-ins patrocinados pela <b>Kora</b>'],
+    ['tomb','var(--flat)','Private delivery via <b>Cloak</b>','Entrega privada via <b>Cloak</b>'],
+    ['missed','var(--missed)','Coercion PIN','PIN de coação'],
+    ['alive','var(--pulse)','<b>200+ SOL</b> protected in alpha','<b>200+ SOL</b> protegidos no alpha']
+  ];
+  window.__ticker = function(){
+    var html = items.map(function(x){ return '<span class="tk">' + icon(x[0], x[1]) + '<span>' + x[lang === 'pt' ? 3 : 2] + '</span></span>'; }).join('');
+    document.getElementById('ticker').innerHTML = html + html;
+  };
 
   /* ---------- hero phone: cycle app states ---------- */
-  var shots = document.querySelectorAll('.phone img'), heroChip = document.getElementById('heroChip'), glow = document.getElementById('glow');
-  var heroStates = [['alive','var(--pulse)'],['missed','var(--missed)'],['due','var(--flat)']], hi = 0;
+  var heroShots = document.querySelectorAll('#heroShot img'), heroChip = document.getElementById('heroChip'), glow = document.getElementById('glow');
+  var heroStates = [['alive','alive','var(--pulse)'],['coercion','missed','var(--missed)'],['due','due','var(--flat)']], hi = 0;
   window.__heroChip = function(){
     var s = heroStates[hi];
     document.getElementById('heroChipTxt').textContent = t(s[0]);
-    heroChip.style.background = s[1];
-    heroChip.querySelector('svg').innerHTML = '<g fill="var(--void)">' + runs(G[s[0]],0,0) + '</g>';
-    glow.style.background = s[1];
-    shots.forEach(function(im){ im.classList.toggle('on', im.dataset.state === s[0]); });
+    heroChip.style.setProperty('--c', s[2]);
+    heroChip.querySelector('svg').innerHTML = '<g fill="currentColor">' + runs(G[s[1]],0,0) + '</g>';
+    glow.style.background = s[2];
+    heroShots.forEach(function(im){ im.classList.toggle('on', im.dataset.state === s[0]); });
   };
-  if (!reduce) setInterval(function(){ hi = (hi + 1) % heroStates.length; window.__heroChip(); }, 3200);
+  if (!reduce) setInterval(function(){ hi = (hi + 1) % heroStates.length; window.__heroChip(); }, 3400);
 
-  /* ---------- waitlist form (no backend yet) ---------- */
-  var form = document.getElementById('join'), note = document.getElementById('formNote');
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    var v = document.getElementById('email').value.trim();
-    var ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
-    note.textContent = ok ? t('thanks') : t('bad');
-    note.classList.toggle('ok', ok);
-    if (ok) form.reset();
-  });
+  /* ---------- how it works: sticky phone follows the active step ---------- */
+  var hsteps = document.querySelectorAll('.hstep'), howImgs = document.querySelectorAll('#howShot img');
+  if ('IntersectionObserver' in window){
+    var hio = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if (!e.isIntersecting) return;
+        var n = +e.target.dataset.shot;
+        hsteps.forEach(function(s){ s.classList.toggle('active', s === e.target); });
+        howImgs.forEach(function(im, i){ im.classList.toggle('on', i === n); });
+      });
+    }, {rootMargin:'-45% 0px -45% 0px'});
+    hsteps.forEach(function(s){ hio.observe(s); });
+  }
+
+  /* ---------- waitlist forms (no backend yet) ---------- */
+  function wire(formId, inputId, noteId){
+    var form = document.getElementById(formId), note = document.getElementById(noteId);
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var v = document.getElementById(inputId).value.trim();
+      var ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+      note.textContent = ok ? t('thanks') : t('bad');
+      note.classList.toggle('ok', ok);
+      if (ok) form.reset();
+    });
+  }
+  wire('join','email','formNote'); wire('join2','email2','formNote2');
 
   /* ---------- pulse demo ---------- */
   var ring = document.getElementById('ring'), SEG = 60, segs = [];
   for (var i = 0; i < SEG; i++){
-    var a = (i / SEG) * Math.PI * 2 - Math.PI / 2;
-    var r1 = 80, r2 = 96, ln = document.createElementNS(NS, 'line');
-    ln.setAttribute('x1', 100 + Math.cos(a) * r1); ln.setAttribute('y1', 100 + Math.sin(a) * r1);
-    ln.setAttribute('x2', 100 + Math.cos(a) * r2); ln.setAttribute('y2', 100 + Math.sin(a) * r2);
-    ln.setAttribute('stroke-width', 5.2); ln.setAttribute('stroke-linecap', 'butt');
+    var a = (i / SEG) * Math.PI * 2 - Math.PI / 2, ln = document.createElementNS(NS, 'line');
+    ln.setAttribute('x1', 100 + Math.cos(a) * 80); ln.setAttribute('y1', 100 + Math.sin(a) * 80);
+    ln.setAttribute('x2', 100 + Math.cos(a) * 96); ln.setAttribute('y2', 100 + Math.sin(a) * 96);
+    ln.setAttribute('stroke-width', 5.2);
     ring.appendChild(ln); segs.push(ln);
   }
   var COL = {alive:'var(--pulse)', missed:'var(--missed)', due:'var(--flat)', released:'var(--ash)'};
   var DUR = {alive:12, missed:8, due:6};
-  var st = 'alive', left = DUR.alive, toastMsg = '';
+  var st = 'alive', left = DUR.alive, toastOn = false, streak = 2, best = 2;
   var dChip = document.getElementById('dChip'), dTimer = document.getElementById('dTimer'), dSub = document.getElementById('dSub'), dBtnTxt = document.getElementById('dBtnTxt'), dToast = document.getElementById('dToast');
   var moods = document.querySelectorAll('.mood');
   function render(){
@@ -624,16 +892,16 @@ body.intro-on{overflow:hidden}
     dChip.style.setProperty('--c', c); dTimer.style.setProperty('--c', c);
     document.getElementById('dChipTxt').textContent = t(st);
     dChip.querySelector('svg').innerHTML = '<g fill="currentColor">' + runs(G[st],0,0) + '</g>';
-    if (st === 'released'){ dTimer.textContent = '3 of 3'; dSub.textContent = t('restEasy'); }
-    else { dTimer.textContent = (st === 'due' ? '' : '') + Math.max(0, Math.ceil(left)) + 's'; dSub.textContent = t(st === 'alive' ? 'untilNext' : st === 'missed' ? 'untilTier' : 'pastDue'); }
+    if (st === 'released'){ dTimer.textContent = t('of3'); dSub.textContent = t('restEasy'); }
+    else { dTimer.textContent = Math.max(0, Math.ceil(left)) + 's'; dSub.textContent = t(st === 'alive' ? 'untilNext' : st === 'missed' ? 'untilTier' : 'pastDue'); }
     dBtnTxt.textContent = st === 'released' ? t('again') : st === 'due' ? t('stop') : t('checkin');
-    var frac = st === 'released' ? 0 : left / DUR[st];
-    var lit = Math.round(frac * SEG);
+    var lit = Math.round((st === 'released' ? 0 : left / DUR[st]) * SEG);
     segs.forEach(function(s, i){ s.setAttribute('stroke', i < lit ? c : 'var(--grave-2)'); });
     moods.forEach(function(m){ m.classList.toggle('active', m.dataset.mood === st); });
-    dToast.innerHTML = toastMsg ? '<svg class="px" viewBox="0 0 11 10"><g fill="var(--pulse)">' + runs(G.heart,0,0) + '</g></svg>' + toastMsg : '';
+    document.getElementById('sStreak').textContent = streak; document.getElementById('sBest').textContent = best;
+    dToast.innerHTML = toastOn ? icon('heart','var(--pulse)') + t('recorded') : '';
   }
-  window.__demoRender = function(){ if (toastMsg) toastMsg = t('recorded'); render(); };
+  window.__demoRender = render;
   var last = performance.now(), demoVisible = false;
   new IntersectionObserver(function(es){ demoVisible = es[0].isIntersecting; }, {threshold:.2}).observe(ring);
   function tick(now){
@@ -641,16 +909,17 @@ body.intro-on{overflow:hidden}
     if (demoVisible && st !== 'released'){
       left -= dt;
       if (left <= 0){
-        if (st === 'alive'){ st = 'missed'; left = DUR.missed; toastMsg = ''; }
+        if (st === 'alive'){ st = 'missed'; left = DUR.missed; toastOn = false; streak = 0; }
         else if (st === 'missed'){ st = 'due'; left = DUR.due; }
-        else if (st === 'due'){ st = 'released'; left = 0; }
+        else { st = 'released'; left = 0; }
       }
       render();
     }
     requestAnimationFrame(tick);
   }
   document.getElementById('dBtn').addEventListener('click', function(){
-    st = 'alive'; left = DUR.alive; toastMsg = t('recorded'); render();
+    if (st !== 'released'){ streak++; best = Math.max(best, streak); } else { streak = 0; }
+    st = 'alive'; left = DUR.alive; toastOn = true; render();
   });
   render(); requestAnimationFrame(tick);
 
@@ -664,69 +933,60 @@ body.intro-on{overflow:hidden}
   /* ---------- INTRO ---------- */
   var intro = document.getElementById('intro'), hero = document.getElementById('hero');
   var cv = document.getElementById('introCanvas'), ctx = cv.getContext('2d');
-  var lock = document.getElementById('lock'), timers = [];
+  var lock = document.getElementById('lock'), tag = document.getElementById('introTag'), timers = [];
   function later(fn, ms){ timers.push(setTimeout(fn, ms)); }
   function clearTimers(){ timers.forEach(clearTimeout); timers = []; }
-  var cells = [], CELL = 0, cols = 0, rows = 0, dissolving = false, dStart = 0;
+  var cells = [], CELL = 0, dissolving = false, dStart = 0;
 
   function sizeCanvas(){
     var dpr = Math.min(2, devicePixelRatio || 1);
     cv.width = innerWidth * dpr; cv.height = innerHeight * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     CELL = Math.max(28, Math.round(Math.min(innerWidth, innerHeight) / 14));
-    cols = Math.ceil(innerWidth / CELL); rows = Math.ceil(innerHeight / CELL);
+    var cols = Math.ceil(innerWidth / CELL), rows = Math.ceil(innerHeight / CELL);
     cells = [];
     for (var y = 0; y < rows; y++) for (var x = 0; x < cols; x++){
-      // diagonal wave from bottom-left with jitter, like pixels dying out
-      var d = ((x / cols) + (1 - y / rows)) / 2;
+      var d = ((x / cols) + (1 - y / rows)) / 2;   // diagonal wave from bottom-left, with jitter
       cells.push({x:x, y:y, t: d * 0.75 + Math.random() * 0.25});
     }
     drawCells(0);
   }
-  function drawCells(p){ // p: 0 = fully covered, 1 = fully revealed
+  function drawCells(p){
     ctx.clearRect(0, 0, innerWidth, innerHeight);
     cells.forEach(function(c){
-      var k = Math.min(1, Math.max(0, (p - c.t * 0.8) / 0.2)); // 0..1 local progress
+      var k = Math.min(1, Math.max(0, (p - c.t * 0.8) / 0.2));
       if (k >= 1) return;
-      var s = CELL * (1 - k);
-      var flash = k > 0 && k < 0.5;
+      var s = CELL * (1 - k), flash = k > 0 && k < 0.5;
       ctx.fillStyle = flash ? '#3EF5A8' : '#0A0B0D';
       ctx.globalAlpha = flash ? 0.9 : 1;
       ctx.fillRect(c.x * CELL + (CELL - s) / 2, c.y * CELL + (CELL - s) / 2, s + 0.5, s + 0.5);
     });
     ctx.globalAlpha = 1;
   }
-
   function buildLock(){
-    var out = '<g id="skullG" style="fill:var(--pulse)">', i = 0, sk = [];
-    G.logo.forEach(function(row, y){ for (var x = 0; x < row.length; x++) if (row[x] === '#') sk.push([x, y]); });
-    sk.forEach(function(p){ out += '<rect class="s" x="' + p[0] + '" y="' + p[1] + '" width="1.02" height="1.02"/>'; });
-    out += '</g><g id="wordG" style="fill:var(--bone)">';
-    WORD.forEach(function(row, y){ for (var x = 0; x < row.length; x++) if (row[x] === '#') out += '<rect class="w" data-c="' + x + '" x="' + (x + 14) + '" y="' + (y + 2) + '" width="1.02" height="1.02"/>'; });
+    var out = '<g id="skullG" style="fill:var(--pulse)">';
+    LOGO.forEach(function(row, y){ for (var x = 0; x < row.length; x++) if (row[x] === '#') out += '<rect class="s" x="' + x + '" y="' + y + '" width="1.08" height="1.08"/>'; });
+    out += '</g><g style="fill:var(--bone)">';
+    WORD.forEach(function(row, y){ for (var x = 0; x < row.length; x++) if (row[x] === '#') out += '<rect class="w" data-c="' + x + '" x="' + (x + 14) + '" y="' + (y + 2) + '" width="1.08" height="1.08"/>'; });
     lock.innerHTML = out + '</g>';
   }
-
   function ecgIntro(){
     var path = document.getElementById('ecgI');
-    var d = 'M0 34 L150 34 L162 28 L170 34 L182 34 L190 44 L200 4 L210 52 L218 34 L240 34 L252 26 L264 34 L290 34 L302 28 L310 34 L322 34 L330 44 L340 4 L350 52 L358 34 L380 34 L392 26 L404 34 L520 34';
-    path.setAttribute('d', d);
+    path.setAttribute('d', 'M0 34 L150 34 L162 28 L170 34 L182 34 L190 44 L200 4 L210 52 L218 34 L240 34 L252 26 L264 34 L290 34 L302 28 L310 34 L322 34 L330 44 L340 4 L350 52 L358 34 L380 34 L392 26 L404 34 L520 34');
     var len = path.getTotalLength();
-    path.style.strokeDasharray = len; path.style.strokeDashoffset = len;
+    path.style.transition = 'none'; path.style.strokeDasharray = len; path.style.strokeDashoffset = len;
     path.getBoundingClientRect();
     path.style.transition = 'stroke-dashoffset 1.9s cubic-bezier(.5,0,.3,1)';
     path.style.strokeDashoffset = 0;
   }
-
   function finish(){
-    clearTimers();
+    clearTimers(); dissolving = false;
     intro.hidden = true; intro.classList.remove('leaving');
     document.body.classList.remove('intro-on');
     hero.classList.add('go');
   }
-
   function dissolve(){
-    intro.classList.add('leaving');
-    hero.classList.add('go');
+    intro.classList.add('leaving'); hero.classList.add('go');
     dissolving = true; dStart = performance.now();
     (function step(now){
       var p = Math.min(1, (now - dStart) / 1000);
@@ -734,22 +994,21 @@ body.intro-on{overflow:hidden}
       if (p < 1 && dissolving) requestAnimationFrame(step); else finish();
     })(dStart);
   }
-
   function playIntro(){
     clearTimers(); dissolving = false;
     intro.hidden = false; intro.classList.remove('leaving');
     document.body.classList.add('intro-on');
-    hero.classList.remove('go');
+    hero.classList.remove('go'); tag.classList.remove('on');
     sizeCanvas(); buildLock();
     var label = document.getElementById('introLabel'), pct = document.getElementById('introPct');
-    label.textContent = t('pct'); pct.textContent = '000';
+    label.textContent = t('pct'); label.style.color = ''; pct.textContent = '000';
     var skullG = document.getElementById('skullG');
     skullG.style.transition = 'none';
     skullG.style.setProperty('--t', 'translate(22px,0)');
     skullG.style.transform = 'translate(22px,0)';   // start centred in the 55-unit lockup
     skullG.getBoundingClientRect(); skullG.style.transition = '';
 
-    // 1. skull pixels pop in, random order
+    // 1. skull pixels pop in, random order, while the ECG draws
     var s = Array.prototype.slice.call(lock.querySelectorAll('rect.s')).sort(function(){ return Math.random() - .5; });
     s.forEach(function(r, i){ later(function(){ r.classList.add('on'); }, 120 + i * (900 / s.length)); });
     ecgIntro();
@@ -759,29 +1018,25 @@ body.intro-on{overflow:hidden}
       pct.textContent = String(Math.round(p * 100)).padStart(3, '0');
       if (p < 1 && !intro.hidden) requestAnimationFrame(count);
     })(t0);
-
     // 2. heartbeat
     later(function(){ skullG.classList.remove('beat'); skullG.getBoundingClientRect(); skullG.classList.add('beat'); }, 1150);
     later(function(){ label.textContent = t('ok'); label.style.color = 'var(--pulse)'; pct.textContent = '100'; }, 1950);
-
-    // 3. skull slides left, wordmark sweeps in column by column
+    // 3. skull slides left, wordmark sweeps in, then the tagline
     later(function(){
       skullG.classList.remove('beat');
       skullG.style.setProperty('--t', 'translate(0px,0)');
       skullG.style.transform = 'translate(0px,0)';
       lock.querySelectorAll('rect.w').forEach(function(r){
-        var c = +r.dataset.c;
-        later(function(){ r.classList.add('on'); }, 260 + c * 16 + Math.random() * 60);
+        later(function(){ r.classList.add('on'); }, 260 + (+r.dataset.c) * 16 + Math.random() * 60);
       });
     }, 1700);
-
+    later(function(){ tag.classList.add('on'); }, 2650);
     // 4. pixel dissolve into the page
-    later(dissolve, 3350);
-    later(function(){ label.style.color = ''; }, 3600);
+    later(dissolve, 3900);
   }
-
-  document.getElementById('skip').addEventListener('click', function(){ if (!dissolving) { clearTimers(); dissolve(); } });
-  addEventListener('keydown', function(e){ if (!intro.hidden && (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ')) { if (!dissolving){ clearTimers(); dissolve(); } } });
+  function skip(){ if (!dissolving && !intro.hidden){ clearTimers(); dissolve(); } }
+  document.getElementById('skip').addEventListener('click', skip);
+  addEventListener('keydown', function(e){ if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') skip(); });
   addEventListener('resize', function(){ if (!intro.hidden && !dissolving) sizeCanvas(); });
   document.getElementById('replay').addEventListener('click', function(){ scrollTo({top:0, behavior:'instant'}); playIntro(); });
 
