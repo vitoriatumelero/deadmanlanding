@@ -64,6 +64,11 @@ h2{font-size:clamp(32px,4.4vw,52px);line-height:1.05;font-weight:700;letter-spac
 .nav-links a{text-decoration:none;color:var(--ash);font-size:15px;font-weight:500;transition:color .2s}
 .nav-links a:hover{color:var(--bone)}
 .nav-right{display:flex;align-items:center;gap:12px}
+.xlink{display:grid;place-items:center;width:42px;height:42px;border:1px solid var(--line);border-radius:11px;color:var(--bone);transition:border-color .2s,color .2s}
+.xlink:hover{border-color:var(--pulse);color:var(--pulse)}
+.xlink svg{width:17px;height:17px}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.signup button[disabled]{opacity:.6;cursor:progress}
 .lang{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
 .lang button{background:none;border:0;color:var(--ash);font:500 12px/1 var(--f-mono);padding:9px 10px;cursor:pointer}
 .lang button[aria-pressed="true"]{background:var(--grave-2);color:var(--bone)}
@@ -272,6 +277,9 @@ details p{margin:0 0 22px;color:var(--ash);max-width:60ch}
 .closing .masc{width:clamp(70px,8vw,96px);height:auto}
 .closing h2{font-size:clamp(38px,6vw,76px);font-weight:800;letter-spacing:-.035em;line-height:1}
 .closing .signup{justify-content:center;width:100%}
+.xfollow{display:inline-flex;align-items:center;gap:10px;font:500 14px var(--f-mono);color:var(--ash);text-decoration:none}
+.xfollow:hover{color:var(--pulse)}
+.xfollow svg{width:15px;height:15px}
 .closing .wm{width:min(220px,50%);height:auto;opacity:.55}
 
 /* footer */
@@ -355,6 +363,7 @@ body.intro-on{overflow:hidden}
       <a href="#faq">FAQ</a>
     </nav>
     <div class="nav-right">
+      <a class="xlink" href="https://x.com/deadmankeeper" target="_blank" rel="noopener" aria-label="Deadman on X (@deadmankeeper)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.75 3h3.07l-6.7 7.66L22 21h-6.17l-4.83-6.32L5.47 21H2.4l7.17-8.2L2 3h6.33l4.37 5.77L17.75 3Zm-1.08 16.2h1.7L7.4 4.72H5.58l11.09 14.48Z"/></svg></a>
       <div class="lang" role="group" aria-label="Language">
         <button type="button" data-lang="en" aria-pressed="true">EN</button>
         <button type="button" data-lang="pt" aria-pressed="false">PT</button>
@@ -373,6 +382,7 @@ body.intro-on{overflow:hidden}
         <p class="lede enter" style="--d:.28s" data-pt="O Deadman libera seus SOL e USDC para seus herdeiros se você ficar em silêncio, e trava o cofre se alguém te forçar a enviar. Uma digital reinicia o relógio.">Deadman releases your SOL and USDC to your heirs if you go silent, and locks your vault if someone forces you to send. One fingerprint resets the clock.</p>
         <form class="signup enter" style="--d:.4s" id="join" novalidate>
           <label for="email" style="position:absolute;left:-9999px">Email</label>
+          <input class="hp" id="website" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
           <input id="email" type="email" placeholder="you@email.com" autocomplete="email" data-pt-ph="voce@email.com" required>
           <button class="btn btn-pulse" type="submit">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 11c0 3.5-1 6.5-3 9M8.5 6.6A6 6 0 0 1 18 11c0 2-.2 4-.8 6M6 9.5c-.4.9-.5 1.8-.5 2.5 0 2.3-.6 4.3-1.5 6M15 13c0 2.6-.5 5-1.5 7M12 7.5a3.5 3.5 0 0 0-3.5 3.5"/></svg>
@@ -660,10 +670,12 @@ body.intro-on{overflow:hidden}
     <h2 class="rv"><span data-pt="Suas chaves morrem com você.">Your keys die with you.</span><br><span class="g" data-pt="Suas criptos, não.">Your crypto doesn’t.</span></h2>
     <form class="signup rv" id="join2" novalidate>
       <label for="email2" style="position:absolute;left:-9999px">Email</label>
+      <input class="hp" id="website2" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
       <input id="email2" type="email" placeholder="you@email.com" autocomplete="email" data-pt-ph="voce@email.com" required>
       <button class="btn btn-pulse" type="submit"><span data-pt="Entrar na lista">Join waitlist</span></button>
     </form>
     <p class="form-note" id="formNote2" aria-live="polite" style="margin:0"></p>
+    <a class="xfollow" href="https://x.com/deadmankeeper" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.75 3h3.07l-6.7 7.66L22 21h-6.17l-4.83-6.32L5.47 21H2.4l7.17-8.2L2 3h6.33l4.37 5.77L17.75 3Zm-1.08 16.2h1.7L7.4 4.72H5.58l11.09 14.48Z"/></svg><span data-pt="Siga @deadmankeeper">Follow @deadmankeeper</span></a>
     <svg class="px wm" data-word viewBox="0 0 41 7" aria-hidden="true"></svg>
   </section>
 </main>
@@ -676,7 +688,7 @@ body.intro-on{overflow:hidden}
         <p style="margin:0;max-width:34ch" data-pt="Um dead man's switch para sua carteira Solana. Feito para o Solana Seeker.">A dead man's switch for your Solana wallet. Built for Solana Seeker.</p>
       </div>
       <div><h4 data-pt="Produto">Product</h4><ul><li><a href="#how" data-pt="Como funciona">How it works</a></li><li><a href="#pulse">Demo</a></li><li><a href="#pricing" data-pt="Preço">Pricing</a></li></ul></div>
-      <div><h4 data-pt="Projeto">Project</h4><ul><li><a href="#team" data-pt="Time">Team</a></li><li><a href="#faq">FAQ</a></li><li><button class="linkbtn" type="button" id="replay" data-pt="Rever abertura">Replay intro</button></li></ul></div>
+      <div><h4 data-pt="Projeto">Project</h4><ul><li><a href="#team" data-pt="Time">Team</a></li><li><a href="#faq">FAQ</a></li><li><a href="https://x.com/deadmankeeper" target="_blank" rel="noopener">X · @deadmankeeper</a></li><li><button class="linkbtn" type="button" id="replay" data-pt="Rever abertura">Replay intro</button></li></ul></div>
     </div>
     <div class="foot-bottom">
       <span>© 2026 Deadman</span>
@@ -687,6 +699,9 @@ body.intro-on{overflow:hidden}
 
 <script>
 (function(){
+  /* Paste the Google Apps Script web app URL here (ends in /exec). See LEIA-ME.md. */
+  var WAITLIST_URL = 'https://script.google.com/macros/s/AKfycbxG1UeL4HXS7TWDc20gr50FGj59JJQ6eG6sPUg6Hlu4guWnpyVPsG1F_rbMn0SyTksv/exec';
+
   document.documentElement.classList.add('js');
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -775,7 +790,9 @@ body.intro-on{overflow:hidden}
     pastDue:['past due, releasing to 4Yep…KMbF','vencida, liberando para 4Yep…KMbF'], restEasy:['tiers paid out. Rest easy.','etapas pagas. Descanse em paz.'],
     checkin:['Check in','Fazer check-in'], stop:['Check in to stop','Check-in para parar'], again:['Start again','Começar de novo'],
     recorded:['Pulse recorded on 2 plans.','Pulso registrado em 2 planos.'], thanks:['You are on the list. Stay alive.','Você está na lista. Continue vivo.'],
-    bad:['Enter a valid email so we can reach you.','Digite um email válido para podermos te avisar.'], pct:['Checking pulse','Checando pulso'], ok:['Alive.','Vivo.'], of3:['3 of 3','3 de 3'] };
+    bad:['Enter a valid email so we can reach you.','Digite um email válido para podermos te avisar.'], sending:['Sending…','Enviando…'],
+    failed:['Could not send. Check your connection and try again.','Não foi possível enviar. Verifique sua conexão e tente de novo.'],
+    offline:['The waitlist is not connected yet. Follow @deadmankeeper on X for news.','A lista de espera ainda não está conectada. Siga @deadmankeeper no X para novidades.'], pct:['Checking pulse','Checando pulso'], ok:['Alive.','Vivo.'], of3:['3 of 3','3 de 3'] };
   function t(k){ return tr[k][lang === 'pt' ? 1 : 0]; }
   function applyLang(){
     document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
@@ -859,19 +876,27 @@ body.intro-on{overflow:hidden}
     hsteps.forEach(function(s){ hio.observe(s); });
   }
 
-  /* ---------- waitlist forms (no backend yet) ---------- */
-  function wire(formId, inputId, noteId){
-    var form = document.getElementById(formId), note = document.getElementById(noteId);
+  /* ---------- waitlist forms → Google Sheet (Apps Script web app) ---------- */
+  function wire(formId, inputId, hpId, noteId, source){
+    var form = document.getElementById(formId), note = document.getElementById(noteId), btn = form.querySelector('button');
+    function say(k, ok){ note.textContent = t(k); note.classList.toggle('ok', !!ok); }
     form.addEventListener('submit', function(e){
       e.preventDefault();
       var v = document.getElementById(inputId).value.trim();
-      var ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
-      note.textContent = ok ? t('thanks') : t('bad');
-      note.classList.toggle('ok', ok);
-      if (ok) form.reset();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) || v.length > 254) return say('bad');
+      if (document.getElementById(hpId).value) return say('thanks', true);   // bot filled the hidden field
+      if (!WAITLIST_URL) return say('offline');
+      btn.disabled = true; say('sending');
+      var body = new URLSearchParams({ email: v, lang: lang, source: source, page: location.href.split('#')[0] });
+      // Apps Script does not send CORS headers, so the request is fire-and-forget (no-cors)
+      fetch(WAITLIST_URL, { method: 'POST', mode: 'no-cors', body: body })
+        .then(function(){ say('thanks', true); form.reset(); })
+        .catch(function(){ say('failed'); })
+        .then(function(){ btn.disabled = false; });
     });
   }
-  wire('join','email','formNote'); wire('join2','email2','formNote2');
+  wire('join', 'email', 'website', 'formNote', 'hero');
+  wire('join2', 'email2', 'website2', 'formNote2', 'footer');
 
   /* ---------- pulse demo ---------- */
   var ring = document.getElementById('ring'), SEG = 60, segs = [];
